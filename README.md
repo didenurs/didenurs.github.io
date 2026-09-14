@@ -4,7 +4,7 @@ Ultra-modern, highly interactive personal portfolio website for **Didenur Sezen*
 
 Designed with a high-tech **Graph & Distributed Systems** aesthetic reflecting expertise in **Neo4j Graph Data Science, P2P Networks, Apache Spark, and .NET/Blazor Software Development**.
 
-Live Target: `https://<your-username>.github.io/`
+Live Target: `https://didenurs.github.io/`
 
 ---
 

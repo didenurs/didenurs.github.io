@@ -182,7 +182,7 @@
 <span class="term-glow-cyan">Direct Contact:</span>
   • Email:    <a href="mailto:didenurszn@gmail.com" style="color:#38bdf8;">didenurszn@gmail.com</a>
   • Phone:    +90 539 503 0687
-  • GitHub:   <a href="https://github.com/didenurszn" target="_blank" style="color:#38bdf8;">github.com/didenurszn</a>
+  • GitHub:   <a href="https://github.com/didenurs" target="_blank" style="color:#38bdf8;">github.com/didenurs</a>
   • LinkedIn: <a href="https://linkedin.com" target="_blank" style="color:#38bdf8;">linkedin.com/in/didenur-sezen</a>
       `;
     },

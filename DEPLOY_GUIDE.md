@@ -48,20 +48,20 @@ git add .
 git commit -m "Initial release: Didenur Sezen interactive portfolio & CV"
 
 # 4. GitHub reponuzu uzak sunucu (remote) olarak bağlayın:
-# (Buradaki 'didenurszn' ve 'didenurszn.github.io' kısımlarını kendi kullanıcı adınızla değiştirin)
-git remote add origin https://github.com/didenurszn/didenurszn.github.io.git
+# 2. GitHub reponuzu bağlayın:
+git remote add origin https://github.com/didenurs/didenurs.github.io.git
 
-# 5. Token ile Push yapın:
+# 3. Token ile Push yapın:
 git push -u origin main
 ```
 
 > **İpucu (Token Girişi):** Git sizden kullanıcı adı ve parola istediğinde:
-> - **Username:** GitHub kullanıcı adınız (Örn: `didenurszn`)
+> - **Username:** `didenurs`
 > - **Password:** Az önce kopyaladığınız `ghp_...` ile başlayan **Token**'dır.
 
 Alternatif olarak, doğrudan URL içinde token kullanarak tek komutla da push edebilirsiniz:
 ```powershell
-git remote set-url origin https://<TOKENINIZ>@github.com/didenurszn/didenurszn.github.io.git
+git remote set-url origin https://<TOKENINIZ>@github.com/didenurs/didenurs.github.io.git
 git push -u origin main
 ```
 
