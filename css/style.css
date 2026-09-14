@@ -376,9 +376,14 @@ h1, h2, h3, h4, h5, h6 {
 
 .hero-container {
   display: grid;
-  grid-template-columns: 1.18fr 0.82fr;
+  grid-template-columns: minmax(0, 1fr) 480px;
   gap: 46px;
-  align-items: center;
+  align-items: flex-start;
+}
+
+.hero-content {
+  min-width: 0;
+  width: 100%;
 }
 
 /* User Friendly Symmetrical Navigation Grid at Top of Hero */
@@ -434,13 +439,15 @@ h1, h2, h3, h4, h5, h6 {
   transform: translateY(-2px);
 }
 
-/* Hero Visual Column (Right side: Photo Frame on Top, Code Card Below) */
+/* Hero Visual Column (Right side: Photo Frame on Top, Code Card Below - Fixed in place) */
 .hero-visual {
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 20px;
+  width: 480px;
+  flex-shrink: 0;
 }
 
 .hero-visual .photo-frame-wrapper {
@@ -551,6 +558,7 @@ h1, h2, h3, h4, h5, h6 {
   font-size: clamp(2.3rem, 4.5vw, 3.6rem);
   line-height: 1.15;
   margin-bottom: 20px;
+  min-height: 3.5em;
 }
 
 .typewriter-text {
@@ -617,12 +625,6 @@ h1, h2, h3, h4, h5, h6 {
 .btn-sm { padding: 8px 16px; font-size: 0.85rem; }
 
 /* Interactive JSON Card in Hero */
-.hero-visual {
-  position: relative;
-  display: flex;
-  justify-content: center;
-}
-
 .interactive-card {
   width: 100%;
   max-width: 480px;
@@ -1637,14 +1639,197 @@ h1, h2, h3, h4, h5, h6 {
 .cv-item-tech { font-size: 0.85rem; color: #059669; }
 .cv-skills-bullets { padding-left: 18px; font-size: 0.9rem; color: #334155; line-height: 1.6; }
 
-/* Print Mode */
+/* ==========================================================================
+   PRINT ENGINE (A4 CV / RESUME PDF EXPORT)
+   ========================================================================== */
 @media print {
-  body * { visibility: hidden; }
-  #cv-modal, #cv-modal * { visibility: visible; }
-  #cv-modal { position: absolute; top: 0; left: 0; width: 100%; padding: 0; background: transparent; }
-  .modal-backdrop, .modal-close, .cv-actions-bar { display: none !important; }
-  .cv-modal-content { border: none; box-shadow: none; max-width: 100%; padding: 0; }
-  .cv-paper { padding: 0; max-height: none; overflow: visible; }
+  @page {
+    size: A4 portrait;
+    margin: 10mm 14mm 10mm 14mm;
+  }
+
+  /* Completely suppress all background elements, navigation, and page sections from layout */
+  #network-canvas,
+  .glow-orb,
+  #toast,
+  .navbar,
+  main,
+  footer,
+  #project-modal,
+  .modal-backdrop,
+  .modal-close,
+  .cv-actions-bar {
+    display: none !important;
+  }
+
+  html, body {
+    background: #ffffff !important;
+    color: #0f172a !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+    font-size: 8.8pt !important;
+    line-height: 1.35 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  a {
+    color: #059669 !important;
+    text-decoration: none !important;
+  }
+
+  a:after {
+    content: none !important;
+  }
+
+  #cv-modal {
+    display: block !important;
+    position: static !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    overflow: visible !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: transparent !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+  }
+
+  .cv-modal-content {
+    display: block !important;
+    position: static !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    background: #ffffff !important;
+    transform: none !important;
+  }
+
+  .cv-paper {
+    display: block !important;
+    position: static !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    background: #ffffff !important;
+    color: #0f172a !important;
+    font-size: 8.8pt !important;
+    line-height: 1.32 !important;
+  }
+
+  .cv-paper-header {
+    border-bottom: 2px solid #059669 !important;
+    padding-bottom: 5px !important;
+    margin-bottom: 8px !important;
+    page-break-after: avoid;
+    break-after: avoid;
+  }
+
+  .cv-paper-header h1 {
+    font-size: 17pt !important;
+    color: #0f172a !important;
+    margin-bottom: 2px !important;
+    font-weight: 700 !important;
+  }
+
+  .cv-paper-subtitle {
+    font-size: 9.5pt !important;
+    color: #059669 !important;
+    font-weight: 600 !important;
+    margin-bottom: 3px !important;
+  }
+
+  .cv-paper-contact {
+    font-size: 8.2pt !important;
+    color: #475569 !important;
+  }
+
+  .cv-paper-section {
+    margin-bottom: 8px !important;
+    page-break-inside: auto;
+    break-inside: auto;
+  }
+
+  .cv-paper-section h2 {
+    font-size: 10pt !important;
+    color: #0f172a !important;
+    border-bottom: 1.5px solid #cbd5e1 !important;
+    padding-bottom: 2px !important;
+    margin-bottom: 4px !important;
+    page-break-after: avoid;
+    break-after: avoid;
+  }
+
+  .cv-paper-section p {
+    font-size: 8.4pt !important;
+    line-height: 1.3 !important;
+    color: #334155 !important;
+    margin-bottom: 3px !important;
+  }
+
+  .cv-paper-item {
+    margin-bottom: 4px !important;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  .cv-item-title-row {
+    display: flex !important;
+    justify-content: space-between !important;
+    font-size: 8.8pt !important;
+    font-weight: 700 !important;
+    color: #0f172a !important;
+  }
+
+  .cv-item-date {
+    font-size: 8pt !important;
+    color: #64748b !important;
+    font-weight: 500 !important;
+  }
+
+  .cv-coursework {
+    font-size: 8pt !important;
+    color: #475569 !important;
+    line-height: 1.25 !important;
+  }
+
+  .cv-item-tech {
+    font-size: 8pt !important;
+    color: #059669 !important;
+    margin-bottom: 2px !important;
+  }
+
+  .cv-skills-bullets {
+    padding-left: 15px !important;
+    font-size: 8.2pt !important;
+    line-height: 1.3 !important;
+    color: #334155 !important;
+  }
+
+  .cv-skills-bullets li {
+    margin-bottom: 2px !important;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
 }
 
 /* Toast */
