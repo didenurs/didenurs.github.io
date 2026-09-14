@@ -1,5 +1,5 @@
 /* ==========================================================================
-   RESPONSIVE DESIGN & MEDIA QUERIES
+   RESPONSIVE DESIGN & MEDIA QUERIES (EMERALD CYBER THEME)
    ========================================================================== */
 
 /* Tablets & Small Laptops (max-width: 1024px) */
@@ -8,6 +8,10 @@
     grid-template-columns: 1fr;
     gap: 40px;
     text-align: center;
+  }
+
+  .photo-frame-wrapper {
+    justify-content: center;
   }
 
   .badge-status {
@@ -20,13 +24,8 @@
     margin-right: auto;
   }
 
-  .hero-cta-group {
+  .hero-nav-chips {
     justify-content: center;
-  }
-
-  .metrics-grid {
-    max-width: 600px;
-    margin: 0 auto;
   }
 
   .about-grid {
@@ -58,7 +57,6 @@
     --header-height: 68px;
   }
 
-  /* Navigation on Mobile */
   .mobile-toggle {
     display: flex;
   }
@@ -68,7 +66,7 @@
     top: var(--header-height);
     left: 0;
     width: 100%;
-    background: rgba(6, 8, 14, 0.98);
+    background: var(--bg-space);
     backdrop-filter: var(--glass-blur);
     border-bottom: 1px solid var(--border-glass);
     padding: 24px 0;
@@ -87,24 +85,16 @@
   .nav-list {
     flex-direction: column;
     align-items: center;
-    gap: 20px;
+    gap: 18px;
   }
 
-  .btn-terminal .shortcut-kbd {
-    display: none;
-  }
-
-  /* Hero Adjustments */
   .hero-title {
-    font-size: 2.2rem;
+    font-size: 2.15rem;
   }
 
-  .metrics-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .interactive-card {
-    max-width: 100%;
+  .profile-photo-frame {
+    width: 105px;
+    height: 105px;
   }
 
   .skills-category-grid {
@@ -144,17 +134,6 @@
     text-align: center;
   }
 
-  /* Terminal Window on Mobile */
-  .terminal-drawer {
-    right: 12px;
-    bottom: 12px;
-    width: calc(100vw - 24px);
-  }
-
-  .terminal-window {
-    height: 360px;
-  }
-
   .cv-paper {
     padding: 20px;
   }
@@ -162,17 +141,14 @@
 
 /* Extra Small Phones (max-width: 480px) */
 @media (max-width: 480px) {
-  .hero-cta-group {
+  .hero-nav-chips {
     flex-direction: column;
     width: 100%;
   }
 
-  .hero-cta-group .btn {
+  .nav-chip-btn {
     width: 100%;
-  }
-
-  .metrics-grid {
-    grid-template-columns: 1fr;
+    justify-content: center;
   }
 
   .projects-filter-bar {

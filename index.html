@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,22 +24,22 @@
   <link rel="stylesheet" href="css/responsive.css">
 
   <!-- Favicon SVG -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230b0f19'/><text x='50%' y='58%' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='42' font-weight='900' fill='%2338bdf8'>&lt;D/&gt;</text></svg>">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230b1118'/><text x='50%' y='58%' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='42' font-weight='900' fill='%2310b981'>&lt;D/&gt;</text></svg>">
 </head>
 <body>
 
   <!-- Dynamic Neural Network / Graph Constellation Canvas -->
   <canvas id="network-canvas" aria-hidden="true"></canvas>
 
-  <!-- Background Ambient Glows -->
+  <!-- Ambient Background Glows -->
   <div class="glow-orb orb-primary" aria-hidden="true"></div>
   <div class="glow-orb orb-secondary" aria-hidden="true"></div>
   <div class="glow-orb orb-tertiary" aria-hidden="true"></div>
 
-  <!-- Quick Notification Toast -->
+  <!-- Notification Toast -->
   <div id="toast" class="toast" role="alert" aria-live="polite">
     <span class="toast-icon">✓</span>
-    <span id="toast-message" class="toast-msg">Email copied to clipboard!</span>
+    <span id="toast-message" class="toast-msg">Notification</span>
   </div>
 
   <!-- Top Navigation Bar -->
@@ -55,27 +55,24 @@
 
       <nav class="nav-menu" id="nav-menu">
         <ul class="nav-list">
-          <li><a href="#about" class="nav-link"><span class="nav-num">01.</span> About</a></li>
-          <li><a href="#skills" class="nav-link"><span class="nav-num">02.</span> Skills</a></li>
-          <li><a href="#projects" class="nav-link"><span class="nav-num">03.</span> Projects</a></li>
-          <li><a href="#experience" class="nav-link"><span class="nav-num">04.</span> Timeline</a></li>
-          <li><a href="#certificates" class="nav-link"><span class="nav-num">05.</span> Certs</a></li>
-          <li><a href="#contact" class="nav-link"><span class="nav-num">06.</span> Contact</a></li>
+          <li><a href="#about" class="nav-link"><span class="nav-num">01.</span> <span data-i18n="navAbout">Background</span></a></li>
+          <li><a href="#skills" class="nav-link"><span class="nav-num">02.</span> <span data-i18n="navSkills">Capabilities</span></a></li>
+          <li><a href="#projects" class="nav-link"><span class="nav-num">03.</span> <span data-i18n="navProjects">Projects</span></a></li>
+          <li><a href="#experience" class="nav-link"><span class="nav-num">04.</span> <span data-i18n="navExp">Education & Experience</span></a></li>
+          <li><a href="#certificates" class="nav-link"><span class="nav-num">05.</span> <span data-i18n="navCerts">Certifications</span></a></li>
+          <li><a href="#contact" class="nav-link"><span class="nav-num">06.</span> <span data-i18n="navContact">Connect</span></a></li>
         </ul>
       </nav>
 
       <div class="nav-actions">
-        <!-- Sound Effect Toggle Button -->
-        <button id="sfx-toggle" class="btn-icon" title="Toggle UI Sound Effects" aria-label="Toggle Sound Effects">
-          <svg class="icon-sound-on" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path><path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path></svg>
-          <svg class="icon-sound-off" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>
+        <!-- Language Switcher (TR / EN) -->
+        <button id="lang-toggle" class="btn-control" title="Dil Değiştir / Switch Language" aria-label="Switch Language">
+          <span id="lang-label">TR</span>
         </button>
 
-        <!-- Terminal Launcher Button -->
-        <button id="btn-open-terminal" class="btn-terminal" title="Launch Interactive Terminal (Shortcut: ~)">
-          <span class="terminal-prompt-symbol">&gt;_</span>
-          <span class="terminal-btn-text">Terminal</span>
-          <kbd class="shortcut-kbd">~</kbd>
+        <!-- Theme Toggle (Dark / Light) -->
+        <button id="theme-toggle" class="btn-control" title="Açık / Koyu Tema (Toggle Theme)" aria-label="Toggle Theme">
+          <span id="theme-icon">☀️</span>
         </button>
 
         <!-- Mobile Menu Hamburger -->
@@ -93,62 +90,66 @@
     <section id="hero" class="hero-section">
       <div class="container hero-container">
         <div class="hero-content">
+          
+          <!-- Photo Frame Placeholder & Direct Social Icons -->
+          <div class="photo-frame-wrapper">
+            <div class="profile-photo-frame" title="Fotoğraf Alanı / Photo Frame">
+              <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                <circle cx="12" cy="13" r="4"></circle>
+              </svg>
+              <span class="photo-hint-tag" data-i18n="photoTag">Photo Frame</span>
+            </div>
+
+            <div class="hero-social-icons">
+              <a href="#contact" class="hero-social-link" title="Contact / Email" aria-label="Direct to Contact">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+              </a>
+              <a href="https://www.linkedin.com/in/didenur-sezen-bb8627312/" target="_blank" rel="noopener noreferrer" class="hero-social-link" title="LinkedIn" aria-label="LinkedIn Profile">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+              </a>
+              <a href="https://github.com/didenurs" target="_blank" rel="noopener noreferrer" class="hero-social-link" title="GitHub" aria-label="GitHub Profile">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+              </a>
+            </div>
+          </div>
+
           <div class="badge-status">
             <span class="pulse-indicator"></span>
-            <span class="badge-text">Yeditepe & UTBM (France) • Computer Engineering</span>
+            <span class="badge-text" data-i18n="heroBadge">Yeditepe & UTBM (France) • Computer Engineering</span>
           </div>
 
           <h1 class="hero-title">
-            Hi, I'm <span class="gradient-text">Didenur Sezen</span>.<br>
-            Engineering <span class="typewriter-text" id="typewriter">Distributed Systems</span>
+            <span data-i18n="heroGreeting">Hi, I'm</span> <span class="gradient-text">Didenur Sezen</span>.<br>
+            <span data-i18n="heroAction">Engineering</span> <span class="typewriter-text" id="typewriter">Distributed Systems</span>
           </h1>
 
-          <p class="hero-lead">
-            Computer Engineering student specializing in <strong>Software & Data Technologies</strong>. 
-            Passionate about architecting high-performance distributed architectures, Neo4j Graph Data Science, 
-            Apache Spark big data pipelines, and robust full-stack applications.
+          <p class="hero-lead" data-i18n="heroLead">
+            Computer Engineering student at <strong>Yeditepe University</strong>, currently pursuing specialized coursework at <strong>UTBM in France</strong>. 
+            Focused on <strong>Software & Data Technologies</strong>, I bridge low-level systems engineering (P2P multithreaded networking, Linux iptables, socket communication) 
+            with modern intelligent data processing (Neo4j Graph Data Science, Apache Spark pipelines) and robust enterprise web solutions (.NET Core & Blazor).
           </p>
 
-          <div class="hero-cta-group">
-            <a href="#projects" class="btn btn-primary">
-              <span>View Projects</span>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </a>
-            <button class="btn btn-outline" id="btn-trigger-cli">
-              <span class="terminal-icon">&gt;_</span>
-              <span>Launch Dev Terminal</span>
-            </button>
-            <button class="btn btn-ghost" id="btn-copy-email" data-email="didenurszn@gmail.com">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-              <span>Copy Email</span>
-            </button>
-          </div>
-
-          <!-- Quick Metrics Bar -->
-          <div class="metrics-grid">
-            <div class="metric-card glass-panel">
-              <span class="metric-num">7+</span>
-              <span class="metric-label">Engineered Systems & Projects</span>
-            </div>
-            <div class="metric-card glass-panel">
-              <span class="metric-num">2</span>
-              <span class="metric-label">Leading Engineering Schools</span>
-            </div>
-            <div class="metric-card glass-panel">
-              <span class="metric-num">10+</span>
-              <span class="metric-label">Core Tech Stacks (.NET, Spark, Neo4j)</span>
-            </div>
-            <div class="metric-card glass-panel">
-              <span class="metric-num">100%</span>
-              <span class="metric-label">Curiosity & Problem Solving</span>
+          <!-- User-Friendly Direct Navigation Chips -->
+          <div class="hero-nav-buttons-wrap">
+            <span class="hero-nav-buttons-label" data-i18n="quickNav">Quick Navigation / Keşfet</span>
+            <div class="hero-nav-chips">
+              <a href="#projects" class="nav-chip-btn highlight">
+                <span data-i18n="navProjects">View Projects</span>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+              <a href="#about" class="nav-chip-btn" data-i18n="navAbout">Engineering Background</a>
+              <a href="#skills" class="nav-chip-btn" data-i18n="navSkills">Capabilities</a>
+              <a href="#experience" class="nav-chip-btn" data-i18n="navExp">Education & Experience</a>
+              <a href="#certificates" class="nav-chip-btn" data-i18n="navCerts">Certifications</a>
+              <a href="#contact" class="nav-chip-btn" data-i18n="navContact">Connect</a>
             </div>
           </div>
         </div>
 
-        <!-- Hero Graphic / Interactive 3D Card -->
+        <!-- Hero Graphic: Interactive JSON Card -->
         <div class="hero-visual">
           <div class="interactive-card tilt-element glass-panel">
-            <div class="card-glow-border"></div>
             <div class="card-header-bar">
               <div class="window-dots">
                 <span class="dot dot-red"></span>
@@ -192,7 +193,7 @@
       <div class="scroll-indicator">
         <a href="#about" aria-label="Scroll to About Section">
           <span class="mouse-icon"><span class="wheel"></span></span>
-          <span class="scroll-text">EXPLORE</span>
+          <span class="scroll-text" data-i18n="exploreBtn">EXPLORE</span>
         </a>
       </div>
     </section>
@@ -204,26 +205,26 @@
           <div class="section-subtitle">
             <span class="code-tag">&lt;section id="about"&gt;</span>
           </div>
-          <h2 class="section-title">Engineering Background & Core Focus</h2>
+          <h2 class="section-title" data-i18n="aboutTitle">Engineering Background & Core Focus</h2>
           <div class="section-divider"></div>
         </div>
 
         <div class="about-grid">
           <div class="about-narrative glass-panel">
-            <h3 class="about-heading">Transforming Complex Challenges into Scalable Software Solutions</h3>
-            <p>
+            <h3 class="about-heading" data-i18n="aboutHeadline">Transforming Complex Challenges into Scalable Software Solutions</h3>
+            <p data-i18n="aboutP1">
               I am a <strong>Computer Science Engineering</strong> student at <strong>Yeditepe University</strong>, 
-              spending an academic term at <strong>Université de Technologie de Belfort-Montbéliard (UTBM) in France</strong>. 
-              My technical journey bridges low-level systems engineering with intelligent data analytics and modern enterprise web software.
+              currently broadening my academic and technical perspective at <strong>Université de Technologie de Belfort-Montbéliard (UTBM) in France</strong>. 
+              My technical journey bridges low-level systems engineering with intelligent data analytics and modern enterprise software.
             </p>
-            <p>
+            <p data-i18n="aboutP2">
               Whether it's building a <strong>P2P multi-source video streaming protocol</strong> from scratch in Java, 
               orchestrating distributed data pipelines using <strong>Apache Spark</strong>, 
               querying complex topological knowledge models with <strong>Neo4j & SPARQL</strong>, 
               or developing reactive web applications with <strong>C# .NET and Blazor</strong>, 
               I thrive on engineering scalable, robust systems.
             </p>
-            <p>
+            <p data-i18n="aboutP3">
               Beyond technical depth, I have experience working within cross-cultural teams (such as developing 
               accessibility solutions during the international <em>Innovation Crunch Time</em> in France) and delivering 
               collaborative features under real-world development workflows.
@@ -233,22 +234,22 @@
               <div class="key-point-item">
                 <span class="point-icon">⚡</span>
                 <div>
-                  <strong>Distributed & High-Concurrency</strong>
-                  <p>Multithreaded socket architectures, P2P network discovery, and Linux firewall management.</p>
+                  <strong data-i18n="keyPoint1Title">Distributed & High-Concurrency</strong>
+                  <p data-i18n="keyPoint1Desc">Multithreaded socket architectures, P2P network discovery, and Linux firewall management.</p>
                 </div>
               </div>
               <div class="key-point-item">
                 <span class="point-icon">🕸️</span>
                 <div>
-                  <strong>Graph Analytics & Semantic Web</strong>
-                  <p>Neo4j Graph Data Science, RDF/OWL ontologies, SWRL reasoning, and community detection.</p>
+                  <strong data-i18n="keyPoint2Title">Graph Analytics & Semantic Web</strong>
+                  <p data-i18n="keyPoint2Desc">Neo4j Graph Data Science, RDF/OWL ontologies, SWRL reasoning, and community detection.</p>
                 </div>
               </div>
               <div class="key-point-item">
                 <span class="point-icon">🚀</span>
                 <div>
-                  <strong>Enterprise & Web Systems</strong>
-                  <p>Blazor/Razor components, SQLite/SQL database architectures, REST API integration, and testing.</p>
+                  <strong data-i18n="keyPoint3Title">Enterprise & Web Systems</strong>
+                  <p data-i18n="keyPoint3Desc">Blazor/Razor components, SQLite/SQL database architectures, REST API integration, and testing.</p>
                 </div>
               </div>
             </div>
@@ -260,38 +261,38 @@
               <div class="spec-icon-box">
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
               </div>
-              <h4>Graph & Knowledge Representation</h4>
-              <p>Topological graph algorithms (centrality, shortest paths) in Neo4j, coupled with W3C Semantic Web standards (RDF/OWL, SPARQL).</p>
+              <h4 data-i18n="spec1Title">Graph & Knowledge Representation</h4>
+              <p data-i18n="spec1Desc">Topological graph algorithms (centrality, shortest paths) in Neo4j, coupled with W3C Semantic Web standards (RDF/OWL, SPARQL).</p>
             </div>
 
             <div class="specialization-card glass-panel tilt-element">
               <div class="spec-icon-box">
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
               </div>
-              <h4>Distributed Computing & Big Data</h4>
-              <p>Scalable data processing with Apache Spark RDDs and DataFrames, PCA dimensionality reduction, and IQR outlier detection.</p>
+              <h4 data-i18n="spec2Title">Distributed Computing & Big Data</h4>
+              <p data-i18n="spec2Desc">Scalable data processing with Apache Spark RDDs and DataFrames, PCA dimensionality reduction, and IQR outlier detection.</p>
             </div>
 
             <div class="specialization-card glass-panel tilt-element">
               <div class="spec-icon-box">
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
               </div>
-              <h4>Blockchain & Smart Contracts</h4>
-              <p>Private multi-node blockchain setups (Geth, MultiChain), Solidity smart contracts, Web3.js integration, and automated testing.</p>
+              <h4 data-i18n="spec3Title">Blockchain & Smart Contracts</h4>
+              <p data-i18n="spec3Desc">Private multi-node blockchain setups (Geth, MultiChain), Solidity smart contracts, Web3.js integration, and automated testing.</p>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- SKILLS MATRIX SECTION -->
+    <!-- SKILLS / CAPABILITIES SECTION -->
     <section id="skills" class="section">
       <div class="container">
         <div class="section-header">
           <div class="section-subtitle">
-            <span class="code-tag">&lt;section id="skills"&gt;</span>
+            <span class="code-tag">&lt;section id="capabilities"&gt;</span>
           </div>
-          <h2 class="section-title">Technical Capabilities & Tooling</h2>
+          <h2 class="section-title" data-i18n="skillsTitle">Capabilities & Technical Tooling</h2>
           <div class="section-divider"></div>
         </div>
 
@@ -299,8 +300,8 @@
           <!-- Programming Languages -->
           <div class="skill-group-card glass-panel">
             <div class="group-header">
-              <span class="group-badge">Languages</span>
-              <h3>Core Programming</h3>
+              <span class="group-badge" data-i18n="badgeLangs">Languages</span>
+              <h3 data-i18n="groupLangs">Core Programming</h3>
             </div>
             <div class="skills-tags-wrap">
               <div class="skill-tag highlighted"><span class="dot-indicator"></span>Python</div>
@@ -317,8 +318,8 @@
           <!-- Data Engineering & Analytics -->
           <div class="skill-group-card glass-panel">
             <div class="group-header">
-              <span class="group-badge">Data Science</span>
-              <h3>Data & Distributed Engines</h3>
+              <span class="group-badge" data-i18n="badgeData">Data Science</span>
+              <h3 data-i18n="groupData">Data & Distributed Engines</h3>
             </div>
             <div class="skills-tags-wrap">
               <div class="skill-tag highlighted"><span class="dot-indicator"></span>Apache Spark</div>
@@ -335,8 +336,8 @@
           <!-- Graph & Knowledge Representation -->
           <div class="skill-group-card glass-panel">
             <div class="group-header">
-              <span class="group-badge">Graphs</span>
-              <h3>Semantic Web & Graph Analytics</h3>
+              <span class="group-badge" data-i18n="badgeGraphs">Graphs</span>
+              <h3 data-i18n="groupGraphs">Semantic Web & Graph Analytics</h3>
             </div>
             <div class="skills-tags-wrap">
               <div class="skill-tag highlighted"><span class="dot-indicator"></span>Neo4j</div>
@@ -352,8 +353,8 @@
           <!-- Systems & Networking -->
           <div class="skill-group-card glass-panel">
             <div class="group-header">
-              <span class="group-badge">Infrastructure</span>
-              <h3>Systems & Networking</h3>
+              <span class="group-badge" data-i18n="badgeSys">Infrastructure</span>
+              <h3 data-i18n="groupSys">Systems & Networking</h3>
             </div>
             <div class="skills-tags-wrap">
               <div class="skill-tag highlighted"><span class="dot-indicator"></span>Linux (iptables)</div>
@@ -368,8 +369,8 @@
           <!-- Web & Desktop -->
           <div class="skill-group-card glass-panel">
             <div class="group-header">
-              <span class="group-badge">Applications</span>
-              <h3>Web, Desktop & APIs</h3>
+              <span class="group-badge" data-i18n="badgeWeb">Applications</span>
+              <h3 data-i18n="groupWeb">Web, Desktop & APIs</h3>
             </div>
             <div class="skills-tags-wrap">
               <div class="skill-tag highlighted"><span class="dot-indicator"></span>.NET Core</div>
@@ -384,8 +385,8 @@
           <!-- Blockchain & Tools -->
           <div class="skill-group-card glass-panel">
             <div class="group-header">
-              <span class="group-badge">Decentralized & Tools</span>
-              <h3>Web3, Methods & Tooling</h3>
+              <span class="group-badge" data-i18n="badgeTools">Decentralized & Tools</span>
+              <h3 data-i18n="groupTools">Web3, Methods & Tooling</h3>
             </div>
             <div class="skills-tags-wrap">
               <div class="skill-tag highlighted"><span class="dot-indicator"></span>Solidity</div>
@@ -408,8 +409,8 @@
           <div class="section-subtitle">
             <span class="code-tag">&lt;section id="projects"&gt;</span>
           </div>
-          <h2 class="section-title">Engineered Projects & Systems</h2>
-          <p class="section-description">
+          <h2 class="section-title" data-i18n="projectsTitle">Engineered Projects & Systems</h2>
+          <p class="section-description" data-i18n="projectsSubtitle">
             A curated showcase of academic, personal, and distributed engineering initiatives. 
             Click on any project to explore architecture details and implementation highlights.
           </p>
@@ -418,11 +419,11 @@
 
         <!-- Filter Controls -->
         <div class="projects-filter-bar">
-          <button class="filter-btn active" data-filter="all">All Projects (7)</button>
-          <button class="filter-btn" data-filter="systems">Distributed & Systems</button>
-          <button class="filter-btn" data-filter="data">Data & Graph Science</button>
-          <button class="filter-btn" data-filter="web">Web & Desktop</button>
-          <button class="filter-btn" data-filter="blockchain">Blockchain</button>
+          <button class="filter-btn active" data-filter="all" data-i18n="filterAll">All Projects (7)</button>
+          <button class="filter-btn" data-filter="systems" data-i18n="filterSys">Distributed & Systems</button>
+          <button class="filter-btn" data-filter="data" data-i18n="filterData">Data & Graph Science</button>
+          <button class="filter-btn" data-filter="web" data-i18n="filterWeb">Web & Desktop</button>
+          <button class="filter-btn" data-filter="blockchain" data-i18n="filterChain">Blockchain</button>
         </div>
 
         <!-- Projects Grid -->
@@ -433,7 +434,10 @@
             <div class="project-header">
               <div class="project-type-badge">Systems & Security</div>
               <div class="project-links">
-                <span class="badge-demo">Demo on YouTube</span>
+                <a href="https://www.youtube.com/watch?v=HR1CsCVQlRw" target="_blank" rel="noopener noreferrer" class="badge-demo-link" title="Watch Demo on YouTube">
+                  <span>Demo on YouTube</span>
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                </a>
               </div>
             </div>
             <h3 class="project-title">Linux Firewall Rule Management & Monitoring</h3>
@@ -450,7 +454,7 @@
             </div>
             <div class="project-footer">
               <button class="btn-inspect" data-open-modal="firewall">
-                <span>View Architecture</span>
+                <span data-i18n="btnInspect">View Architecture</span>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
               </button>
             </div>
@@ -461,7 +465,7 @@
             <div class="project-header">
               <div class="project-type-badge">Distributed Systems</div>
               <div class="project-links">
-                <span class="badge-demo">P2P Network Engine</span>
+                <span class="badge-demo-link">P2P Network Engine</span>
               </div>
             </div>
             <h3 class="project-title">Decentralized P2P Video Streaming Application</h3>
@@ -478,7 +482,7 @@
             </div>
             <div class="project-footer">
               <button class="btn-inspect" data-open-modal="p2p">
-                <span>View Architecture</span>
+                <span data-i18n="btnInspect">View Architecture</span>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
               </button>
             </div>
@@ -489,7 +493,7 @@
             <div class="project-header">
               <div class="project-type-badge">Knowledge Representation</div>
               <div class="project-links">
-                <span class="badge-demo">Graph Data Science</span>
+                <span class="badge-demo-link">Graph Data Science</span>
               </div>
             </div>
             <h3 class="project-title">Semantic Web, Ontologies & Neo4j Graph Analytics</h3>
@@ -506,7 +510,7 @@
             </div>
             <div class="project-footer">
               <button class="btn-inspect" data-open-modal="graph">
-                <span>View Architecture</span>
+                <span data-i18n="btnInspect">View Architecture</span>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
               </button>
             </div>
@@ -517,7 +521,7 @@
             <div class="project-header">
               <div class="project-type-badge">Big Data Pipeline</div>
               <div class="project-links">
-                <span class="badge-demo">Distributed Analytics</span>
+                <span class="badge-demo-link">Distributed Analytics</span>
               </div>
             </div>
             <h3 class="project-title">Intelligent Analytics & Distributed Data Pipeline</h3>
@@ -534,7 +538,7 @@
             </div>
             <div class="project-footer">
               <button class="btn-inspect" data-open-modal="spark">
-                <span>View Architecture</span>
+                <span data-i18n="btnInspect">View Architecture</span>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
               </button>
             </div>
@@ -545,7 +549,7 @@
             <div class="project-header">
               <div class="project-type-badge">Web3 & Decentralization</div>
               <div class="project-links">
-                <span class="badge-demo">Consortium Network</span>
+                <span class="badge-demo-link">Consortium Network</span>
               </div>
             </div>
             <h3 class="project-title">Blockchain & Multi-Node Smart Contracts</h3>
@@ -562,7 +566,7 @@
             </div>
             <div class="project-footer">
               <button class="btn-inspect" data-open-modal="blockchain">
-                <span>View Architecture</span>
+                <span data-i18n="btnInspect">View Architecture</span>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
               </button>
             </div>
@@ -573,7 +577,7 @@
             <div class="project-header">
               <div class="project-type-badge">Full-Stack Web & UML</div>
               <div class="project-links">
-                <span class="badge-demo">Relational Architecture</span>
+                <span class="badge-demo-link">Relational Architecture</span>
               </div>
             </div>
             <h3 class="project-title">Smart Parking Management System Website</h3>
@@ -590,7 +594,7 @@
             </div>
             <div class="project-footer">
               <button class="btn-inspect" data-open-modal="parking">
-                <span>View Architecture</span>
+                <span data-i18n="btnInspect">View Architecture</span>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
               </button>
             </div>
@@ -601,7 +605,10 @@
             <div class="project-header">
               <div class="project-type-badge">Database-Driven Web</div>
               <div class="project-links">
-                <span class="badge-demo">Demo Available</span>
+                <a href="https://drive.google.com/file/d/1I_6cJ3o8fx2xlX-RVNxNpcoLxVl80SqE/view?pli=1" target="_blank" rel="noopener noreferrer" class="badge-demo-link" title="Open Google Drive Demo">
+                  <span>Demo Available</span>
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                </a>
               </div>
             </div>
             <h3 class="project-title">Database-Driven Music Player Web Platform</h3>
@@ -618,7 +625,7 @@
             </div>
             <div class="project-footer">
               <button class="btn-inspect" data-open-modal="music">
-                <span>View Architecture</span>
+                <span data-i18n="btnInspect">View Architecture</span>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
               </button>
             </div>
@@ -628,14 +635,14 @@
       </div>
     </section>
 
-    <!-- EXPERIENCE & EDUCATION TIMELINE SECTION -->
+    <!-- EXPERIENCE & EDUCATION SECTION -->
     <section id="experience" class="section">
       <div class="container">
         <div class="section-header">
           <div class="section-subtitle">
             <span class="code-tag">&lt;section id="timeline"&gt;</span>
           </div>
-          <h2 class="section-title">Education & Professional Experience</h2>
+          <h2 class="section-title" data-i18n="expTitle">Education & Experience</h2>
           <div class="section-divider"></div>
         </div>
 
@@ -647,14 +654,14 @@
             <div class="timeline-card glass-panel">
               <div class="timeline-header">
                 <div>
-                  <span class="timeline-role">Computer Science Engineering (Exchange)</span>
+                  <span class="timeline-role" data-i18n="utbmRole">Computer Science Engineering (Exchange)</span>
                   <h3 class="timeline-company">Université de Technologie de Belfort-Montbéliard (UTBM)</h3>
                 </div>
                 <span class="timeline-date">February 2026 – July 2026</span>
               </div>
               <p class="timeline-location">📍 Belfort-Montbéliard, France</p>
               <div class="timeline-coursework">
-                <strong>Relevant Coursework:</strong>
+                <strong data-i18n="courseworkLabel">Relevant Coursework:</strong>
                 <div class="coursework-chips">
                   <span>Intelligent Analytics & Data Management</span>
                   <span>Foundations of Data Science</span>
@@ -673,13 +680,13 @@
             <div class="timeline-card glass-panel">
               <div class="timeline-header">
                 <div>
-                  <span class="timeline-role">Computer Science Engineering (B.Sc.)</span>
+                  <span class="timeline-role" data-i18n="yeditepeRole">Computer Science Engineering (B.Sc.)</span>
                   <h3 class="timeline-company">Yeditepe University</h3>
                 </div>
                 <span class="timeline-date">2022 – Present</span>
               </div>
               <p class="timeline-location">📍 Istanbul, Turkey</p>
-              <p class="timeline-text">
+              <p class="timeline-text" data-i18n="yeditepeDesc">
                 Undergraduate studies focused on data structures, algorithms, object-oriented design, 
                 systems programming, network protocols, database engineering, and artificial intelligence foundations.
               </p>
@@ -692,17 +699,17 @@
             <div class="timeline-card glass-panel">
               <div class="timeline-header">
                 <div>
-                  <span class="timeline-role">API Developer Intern</span>
+                  <span class="timeline-role" data-i18n="cloudpeerRole">API Developer Intern</span>
                   <h3 class="timeline-company">Cloudpeer Global Technology</h3>
                 </div>
                 <span class="timeline-date">July 2025</span>
               </div>
               <p class="timeline-location">📍 C# / .NET / Blazor / API Integration / SQLite / Postman</p>
               <ul class="timeline-list">
-                <li>Contributed to the development of a modern <strong>Blazor-based web application</strong> integrated with existing Mock API systems.</li>
-                <li>Developed interactive frontend features for data visualization, user authentication, and multi-tier filtering using <strong>C# and Razor Components</strong>.</li>
-                <li>Integrated <strong>SQLite</strong> for dynamic CRUD operations, data persistence, and caching.</li>
-                <li>Performed comprehensive API testing, endpoint mock validation, and system response verification with <strong>Postman</strong>.</li>
+                <li data-i18n="cloudpeer1">Contributed to the development of a modern <strong>Blazor-based web application</strong> integrated with existing Mock API systems.</li>
+                <li data-i18n="cloudpeer2">Developed interactive frontend features for data visualization, user authentication, and multi-tier filtering using <strong>C# and Razor Components</strong>.</li>
+                <li data-i18n="cloudpeer3">Integrated <strong>SQLite</strong> for dynamic CRUD operations, data persistence, and caching.</li>
+                <li data-i18n="cloudpeer4">Performed comprehensive API testing, endpoint mock validation, and system response verification with <strong>Postman</strong>.</li>
               </ul>
             </div>
           </div>
@@ -713,13 +720,13 @@
             <div class="timeline-card glass-panel">
               <div class="timeline-header">
                 <div>
-                  <span class="timeline-role">Multidisciplinary Innovation Member</span>
+                  <span class="timeline-role" data-i18n="volunteerRole">Multidisciplinary Innovation Member</span>
                   <h3 class="timeline-company">Innovation Crunch Time — ADAPEI Project</h3>
                 </div>
-                <span class="timeline-date">International Team Project</span>
+                <span class="timeline-date" data-i18n="volunteerDate">International Team Project</span>
               </div>
               <p class="timeline-location">📍 Cross-Cultural Team (10 Participants, 6 Countries) • France</p>
-              <p class="timeline-text">
+              <p class="timeline-text" data-i18n="volunteerDesc">
                 Collaborated within a multidisciplinary team during the intensive one-week Innovation Crunch Time event to engineer an <strong>accessibility-focused rain protection system for wheelchair users</strong>, aimed at improving mobility and daily comfort.
                 Contributed to ideation, technical evaluation, CAD design, and creation of a functional physical prototype presented to an ADAPEI supervisor.
               </p>
@@ -737,62 +744,65 @@
           <div class="section-subtitle">
             <span class="code-tag">&lt;section id="certificates"&gt;</span>
           </div>
-          <h2 class="section-title">Certifications & Seminars</h2>
+          <h2 class="section-title" data-i18n="certsTitle">Certifications & Seminars</h2>
           <div class="section-divider"></div>
         </div>
 
         <div class="certs-grid">
           <!-- NVIDIA -->
-          <div class="cert-card glass-panel tilt-element">
+          <a href="https://learn.nvidia.com/certificates?id=PnjO6cPgTTu7awBijoM5rg" target="_blank" rel="noopener noreferrer" class="cert-card glass-panel tilt-element" title="View NVIDIA Certificate">
             <div class="cert-icon-wrap">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
             </div>
             <div class="cert-content">
               <span class="cert-issuer">NVIDIA Deep Learning Institute</span>
               <h3 class="cert-title">Accelerating End-to-End Data Science Workflows</h3>
               <span class="cert-year">2026</span>
-              <p class="cert-desc">Hands-on mastery of GPU-accelerated data processing, rapid ETL pipelines, and high-performance analytics pipelines.</p>
+              <p class="cert-desc" data-i18n="certNvidia">Hands-on mastery of GPU-accelerated data processing, rapid ETL pipelines, and high-performance analytics pipelines.</p>
+              <span class="cert-link-btn" data-i18n="viewCert">View Certificate ↗</span>
             </div>
-          </div>
+          </a>
 
           <!-- Coderspace -->
-          <div class="cert-card glass-panel tilt-element">
+          <a href="https://drive.google.com/file/d/1wybrlfXHlA-dhdK8oJ4y0TFR-q65-p9T/view" target="_blank" rel="noopener noreferrer" class="cert-card glass-panel tilt-element" title="View Coderspace Certificate">
             <div class="cert-icon-wrap">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
             </div>
             <div class="cert-content">
               <span class="cert-issuer">Coderspace</span>
               <h3 class="cert-title">Tech & Dev Talks Seminar</h3>
               <span class="cert-year">2024</span>
-              <p class="cert-desc">Attendance certificate covering cutting-edge software architecture trends, developer practices, and cloud patterns.</p>
+              <p class="cert-desc" data-i18n="certCoder">Attendance certificate covering cutting-edge software architecture trends, developer practices, and cloud patterns.</p>
+              <span class="cert-link-btn" data-i18n="viewCert">View Certificate ↗</span>
             </div>
-          </div>
+          </a>
 
           <!-- Sabanci University -->
-          <div class="cert-card glass-panel tilt-element">
+          <a href="https://drive.google.com/file/d/1jesj5Q_3fKj9a6xvcb1xtfo1krQC5XVc/view" target="_blank" rel="noopener noreferrer" class="cert-card glass-panel tilt-element" title="View Sabancı University Certificate">
             <div class="cert-icon-wrap">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
             </div>
             <div class="cert-content">
               <span class="cert-issuer">Sabancı University</span>
               <h3 class="cert-title">Summer School Academy</h3>
               <span class="cert-year">2019</span>
-              <p class="cert-desc">Dual completion in Introduction to Computer Programming and 3D Organ Design Course.</p>
+              <p class="cert-desc" data-i18n="certSabanci">Dual completion in Introduction to Computer Programming and 3D Organ Design Course.</p>
+              <span class="cert-link-btn" data-i18n="viewCert">View Certificate ↗</span>
             </div>
-          </div>
+          </a>
         </div>
       </div>
     </section>
 
-    <!-- CONTACT & CV DOWNLOAD SECTION -->
+    <!-- CONTACT SECTION -->
     <section id="contact" class="section">
       <div class="container">
         <div class="section-header">
           <div class="section-subtitle">
             <span class="code-tag">&lt;section id="contact"&gt;</span>
           </div>
-          <h2 class="section-title">Let's Connect & Collaborate</h2>
-          <p class="section-description">
+          <h2 class="section-title" data-i18n="contactTitle">Let's Connect & Collaborate</h2>
+          <p class="section-description" data-i18n="contactSubtitle">
             I am always open to discussing distributed software architectures, data science challenges, 
             internship/full-time opportunities, or innovative engineering collaborations.
           </p>
@@ -801,8 +811,8 @@
 
         <div class="contact-wrapper glass-panel">
           <div class="contact-info-side">
-            <h3 class="contact-headline">Reach Out Directly</h3>
-            <p class="contact-sub">
+            <h3 class="contact-headline" data-i18n="contactReach">Reach Out Directly</h3>
+            <p class="contact-sub" data-i18n="contactReachDesc">
               Feel free to connect via email, LinkedIn, or check out my code repositories on GitHub.
             </p>
 
@@ -815,9 +825,6 @@
                   <span class="contact-label">Email</span>
                   <a href="mailto:didenurszn@gmail.com" class="contact-val">didenurszn@gmail.com</a>
                 </div>
-                <button class="btn-copy-mini" title="Copy Email" data-email="didenurszn@gmail.com">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-                </button>
               </div>
 
               <div class="contact-item">
@@ -836,7 +843,7 @@
                 </div>
                 <div>
                   <span class="contact-label">LinkedIn</span>
-                  <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="contact-val">linkedin.com/in/didenur-sezen</a>
+                  <a href="https://www.linkedin.com/in/didenur-sezen-bb8627312/" target="_blank" rel="noopener noreferrer" class="contact-val">linkedin.com/in/didenur-sezen-bb8627312/</a>
                 </div>
               </div>
 
@@ -855,33 +862,33 @@
             <div class="cv-actions-box">
               <button class="btn btn-primary btn-block" id="btn-open-cv-modal">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-                <span>View & Print Verified CV</span>
+                <span data-i18n="btnCv">View & Print Verified CV</span>
               </button>
             </div>
           </div>
 
-          <!-- Interactive Quick Mail Composer -->
+          <!-- Direct Message Form -->
           <div class="contact-form-side">
-            <h3 class="contact-headline">Send a Direct Message</h3>
+            <h3 class="contact-headline" data-i18n="formTitle">Send a Direct Message</h3>
             <form id="contact-form" class="contact-form">
               <div class="form-group">
-                <label for="form-name">Your Name</label>
-                <input type="text" id="form-name" placeholder="Alex Morgan" required>
+                <label for="form-name" data-i18n="formLabelName">Your Name</label>
+                <input type="text" id="form-name" placeholder="Jane Doe" required>
               </div>
               <div class="form-group">
-                <label for="form-email">Your Email</label>
-                <input type="email" id="form-email" placeholder="alex@company.com" required>
+                <label for="form-email" data-i18n="formLabelEmail">Your Email</label>
+                <input type="email" id="form-email" placeholder="jane.doe@example.com" required>
               </div>
               <div class="form-group">
-                <label for="form-subject">Subject</label>
+                <label for="form-subject" data-i18n="formLabelSubject">Subject</label>
                 <input type="text" id="form-subject" placeholder="Distributed Systems / Role Discussion" required>
               </div>
               <div class="form-group">
-                <label for="form-message">Message</label>
+                <label for="form-message" data-i18n="formLabelMsg">Message</label>
                 <textarea id="form-message" rows="4" placeholder="Hello Didenur, I saw your portfolio and would like to talk about..." required></textarea>
               </div>
               <button type="submit" class="btn btn-primary btn-block">
-                <span>Compose & Send Message</span>
+                <span data-i18n="formSubmit">Compose & Send Message</span>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
               </button>
             </form>
@@ -911,7 +918,7 @@
       <div class="footer-right">
         <div class="footer-status-pill">
           <span class="live-dot"></span>
-          <span>Open for Opportunities & Innovation</span>
+          <span data-i18n="footerStatus">Open for Opportunities & Innovation</span>
         </div>
         <p class="footer-year">© 2026 Didenur Sezen. All rights reserved.</p>
       </div>
@@ -919,7 +926,7 @@
   </footer>
 
   <!-- ============================================== -->
-  <!-- MODAL: PROJECT ARCHITECTURE DETAILS DEEP-DIVE -->
+  <!-- MODAL: PROJECT ARCHITECTURE DETAILS            -->
   <!-- ============================================== -->
   <div id="project-modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
     <div class="modal-backdrop"></div>
@@ -943,7 +950,7 @@
         <div class="cv-btns-group">
           <button class="btn btn-outline btn-sm" id="btn-print-cv">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
-            <span>Print / Save as PDF</span>
+            <span data-i18n="btnPrint">Print / Save as PDF</span>
           </button>
         </div>
       </div>
@@ -954,7 +961,7 @@
           <div class="cv-paper-contact">
             <span>Email: <a href="mailto:didenurszn@gmail.com">didenurszn@gmail.com</a></span> • 
             <span>Phone: +90 539 503 0687</span> • 
-            <span><a href="https://linkedin.com" target="_blank">LinkedIn</a></span> • 
+            <span><a href="https://www.linkedin.com/in/didenur-sezen-bb8627312/" target="_blank">LinkedIn</a></span> • 
             <span><a href="https://github.com/didenurs" target="_blank">GitHub</a></span>
           </div>
         </div>
@@ -1001,7 +1008,7 @@
           <h2>Projects</h2>
           <div class="cv-paper-item">
             <strong>Linux Firewall Rule Management & Monitoring Application (PyQt5 / iptables):</strong>
-            <p>Developed a PyQt5 GUI for managing and monitoring Linux iptables INPUT chain rules, implementing rule lifecycle management, traffic statistics analysis, rule reordering, input validation, and whitelist/blacklist operations. (Demo available on YouTube)</p>
+            <p>Developed a PyQt5 GUI for managing and monitoring Linux iptables INPUT chain rules, implementing rule lifecycle management, traffic statistics analysis, rule reordering, input validation, and whitelist/blacklist operations. (Demo available on YouTube: <a href="https://www.youtube.com/watch?v=HR1CsCVQlRw" target="_blank">Watch Video</a>)</p>
           </div>
           <div class="cv-paper-item">
             <strong>Decentralized P2P Video Streaming Application (Java):</strong>
@@ -1013,7 +1020,7 @@
           </div>
           <div class="cv-paper-item">
             <strong>Music Player Website (HTML / PHP / SQL):</strong>
-            <p>Built a database-driven music platform with playlist creation, music and artist search, album and genre exploration, and dynamically managed user and media data through automatically generated database tables. Designed the database architecture using ER diagrams and mapped system navigation through Action Flow models.</p>
+            <p>Built a database-driven music platform with playlist creation, music and artist search, album and genre exploration, and dynamically managed user and media data through automatically generated database tables. Designed the database architecture using ER diagrams and mapped system navigation through Action Flow models. (Demo: <a href="https://drive.google.com/file/d/1I_6cJ3o8fx2xlX-RVNxNpcoLxVl80SqE/view?pli=1" target="_blank">Google Drive</a>)</p>
           </div>
           <div class="cv-paper-item">
             <strong>Intelligent Analytics & Data Management:</strong>
@@ -1055,45 +1062,17 @@
         <div class="cv-paper-section">
           <h2>Certificates</h2>
           <ul class="cv-skills-bullets">
-            <li><strong>NVIDIA</strong> — Accelerating End-to-End Data Science Workflows Certificate (2026)</li>
-            <li><strong>Tech & Dev Talks Seminar</strong> (Coderspace) Attendance Certificate (2024)</li>
-            <li><strong>Sabancı University Summer School</strong> Attendance Certificate (2019): Introduction to Computer Programming Course, 3D Organ Design Course</li>
+            <li><strong>NVIDIA</strong> — Accelerating End-to-End Data Science Workflows Certificate (2026) [<a href="https://learn.nvidia.com/certificates?id=PnjO6cPgTTu7awBijoM5rg" target="_blank">Verify</a>]</li>
+            <li><strong>Tech & Dev Talks Seminar</strong> (Coderspace) Attendance Certificate (2024) [<a href="https://drive.google.com/file/d/1wybrlfXHlA-dhdK8oJ4y0TFR-q65-p9T/view" target="_blank">Verify</a>]</li>
+            <li><strong>Sabancı University Summer School</strong> Attendance Certificate (2019): Introduction to Computer Programming Course, 3D Organ Design Course [<a href="https://drive.google.com/file/d/1jesj5Q_3fKj9a6xvcb1xtfo1krQC5XVc/view" target="_blank">Verify</a>]</li>
           </ul>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- ============================================== -->
-  <!-- FLOATING INTERACTIVE CLI / TERMINAL WINDOW     -->
-  <!-- ============================================== -->
-  <aside id="terminal-drawer" class="terminal-drawer" aria-hidden="true">
-    <div class="terminal-window glass-panel">
-      <div class="terminal-titlebar">
-        <div class="window-dots">
-          <span class="dot dot-red" id="terminal-close-btn" title="Close"></span>
-          <span class="dot dot-yellow" id="terminal-min-btn" title="Minimize"></span>
-          <span class="dot dot-green" id="terminal-max-btn" title="Maximize"></span>
-        </div>
-        <div class="terminal-title">didenur@dev-terminal:~ (zsh)</div>
-        <div class="terminal-quick-hint">Press <kbd>ESC</kbd> or click red dot to close</div>
-      </div>
-      <div class="terminal-content" id="terminal-output">
-        <div class="term-line term-welcome">
-          <span class="term-glow-cyan">Didenur Sezen Interactive CLI [Version 2.6.0]</span><br>
-          <span class="term-dim">Type <span class="term-highlight">'help'</span> to see available commands or <span class="term-highlight">'projects'</span> to list portfolio works.</span>
-        </div>
-      </div>
-      <form class="terminal-input-bar" id="terminal-form">
-        <span class="terminal-prompt-label">didenur@portfolio:~$</span>
-        <input type="text" id="terminal-input" autocomplete="off" spellcheck="false" placeholder="Type a command (e.g. help, skills, projects, sudo hire)..." aria-label="Terminal input">
-      </form>
-    </div>
-  </aside>
-
-  <!-- Interactive Scripts -->
+  <!-- Scripts -->
   <script src="js/canvas-network.js"></script>
-  <script src="js/terminal.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>

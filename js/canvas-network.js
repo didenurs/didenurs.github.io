@@ -1,7 +1,6 @@
 /**
  * Interactive Neural Network / Graph Constellation Background Canvas
- * Directly reflects Didenur's specialization in Graph Data Science (Neo4j),
- * P2P Distributed Systems, and Blockchain Network Topologies.
+ * Emerald & Cyber-Mint Theme for Didenur Sezen Portfolio
  */
 
 (function () {
@@ -12,7 +11,6 @@
   let width = (canvas.width = window.innerWidth);
   let height = (canvas.height = window.innerHeight);
 
-  // Mouse interaction state
   const mouse = {
     x: null,
     y: null,
@@ -35,32 +33,28 @@
     initParticles();
   });
 
-  // Graph Node / Particle Definition
   class Node {
     constructor() {
       this.x = Math.random() * width;
       this.y = Math.random() * height;
-      this.vx = (Math.random() - 0.5) * 0.7;
-      this.vy = (Math.random() - 0.5) * 0.7;
+      this.vx = (Math.random() - 0.5) * 0.65;
+      this.vy = (Math.random() - 0.5) * 0.65;
       this.baseRadius = Math.random() * 2 + 1.2;
       this.radius = this.baseRadius;
-      // Vibrant cyber color assignment
-      const colors = ['#38bdf8', '#818cf8', '#a855f7', '#34d399'];
+      // Vibrant green/emerald/mint palette
+      const colors = ['#10b981', '#34d399', '#059669', '#6ee7b7'];
       this.color = colors[Math.floor(Math.random() * colors.length)];
       this.pulseSpeed = Math.random() * 0.03 + 0.01;
       this.pulseVal = Math.random() * Math.PI;
     }
 
     update() {
-      // Gentle floating motion
       this.x += this.vx;
       this.y += this.vy;
 
-      // Bounce against screen boundaries
       if (this.x < 0 || this.x > width) this.vx *= -1;
       if (this.y < 0 || this.y > height) this.vy *= -1;
 
-      // Mouse interactivity (gentle gravitational attraction & expansion)
       if (mouse.x !== null && mouse.y !== null) {
         const dx = mouse.x - this.x;
         const dy = mouse.y - this.y;
@@ -82,27 +76,26 @@
     }
 
     draw() {
-      const alpha = 0.5 + Math.sin(this.pulseVal) * 0.3;
+      const alpha = 0.55 + Math.sin(this.pulseVal) * 0.3;
       ctx.save();
       ctx.beginPath();
       ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
       ctx.fillStyle = this.color;
       ctx.globalAlpha = alpha;
-      ctx.shadowBlur = 10;
+      ctx.shadowBlur = 8;
       ctx.shadowColor = this.color;
       ctx.fill();
       ctx.restore();
     }
   }
 
-  // Data packet traveling along edges (representing P2P chunk transfer / graph traversal)
   class Packet {
     constructor(nodeA, nodeB) {
       this.nodeA = nodeA;
       this.nodeB = nodeB;
       this.progress = 0;
       this.speed = Math.random() * 0.012 + 0.008;
-      this.color = '#38bdf8';
+      this.color = '#34d399';
     }
 
     update() {
@@ -119,7 +112,7 @@
       ctx.arc(x, y, 2.2, 0, Math.PI * 2);
       ctx.fillStyle = '#ffffff';
       ctx.shadowBlur = 8;
-      ctx.shadowColor = '#38bdf8';
+      ctx.shadowColor = '#10b981';
       ctx.fill();
       ctx.restore();
     }
@@ -132,18 +125,16 @@
   function initParticles() {
     nodes = [];
     packets = [];
-    // Adjust particle count dynamically based on screen real estate
     const nodeCount = Math.floor((width * height) / 16000);
-    const count = Math.min(Math.max(nodeCount, 45), 100);
+    const count = Math.min(Math.max(nodeCount, 45), 95);
 
     for (let i = 0; i < count; i++) {
       nodes.push(new Node());
     }
   }
 
-  // Periodic packet generation across connected edges
   function spawnPacket() {
-    if (nodes.length < 2 || packets.length > 12) return;
+    if (nodes.length < 2 || packets.length > 10) return;
     const i = Math.floor(Math.random() * nodes.length);
     const j = Math.floor(Math.random() * nodes.length);
     if (i === j) return;
@@ -157,12 +148,11 @@
     }
   }
 
-  setInterval(spawnPacket, 800);
+  setInterval(spawnPacket, 900);
 
   function animate() {
     ctx.clearRect(0, 0, width, height);
 
-    // Draw connecting edges
     for (let i = 0; i < nodes.length; i++) {
       for (let j = i + 1; j < nodes.length; j++) {
         const dx = nodes[i].x - nodes[j].x;
@@ -174,13 +164,12 @@
           ctx.beginPath();
           ctx.moveTo(nodes[i].x, nodes[i].y);
           ctx.lineTo(nodes[j].x, nodes[j].y);
-          ctx.strokeStyle = `rgba(56, 189, 248, ${alpha})`;
+          ctx.strokeStyle = `rgba(16, 185, 129, ${alpha})`;
           ctx.lineWidth = 0.9;
           ctx.stroke();
         }
       }
 
-      // Connect to mouse pointer
       if (mouse.x !== null && mouse.y !== null) {
         const dx = nodes[i].x - mouse.x;
         const dy = nodes[i].y - mouse.y;
@@ -191,14 +180,13 @@
           ctx.beginPath();
           ctx.moveTo(nodes[i].x, nodes[i].y);
           ctx.lineTo(mouse.x, mouse.y);
-          ctx.strokeStyle = `rgba(168, 85, 247, ${alpha})`;
+          ctx.strokeStyle = `rgba(52, 211, 153, ${alpha})`;
           ctx.lineWidth = 1.2;
           ctx.stroke();
         }
       }
     }
 
-    // Update & draw packets
     for (let p = packets.length - 1; p >= 0; p--) {
       if (packets[p].update()) {
         packets[p].draw();
@@ -207,7 +195,6 @@
       }
     }
 
-    // Update & draw nodes
     for (let i = 0; i < nodes.length; i++) {
       nodes[i].update();
       nodes[i].draw();
