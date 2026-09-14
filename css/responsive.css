@@ -10,6 +10,10 @@
     text-align: center;
   }
 
+  .hero-visual {
+    order: -1; /* Shows photo and profile card above introduction on tablet/mobile if desired, or keep natural */
+  }
+
   .photo-frame-wrapper {
     justify-content: center;
   }
@@ -25,7 +29,9 @@
   }
 
   .hero-nav-chips {
-    justify-content: center;
+    max-width: 580px;
+    margin: 0 auto;
+    grid-template-columns: repeat(3, 1fr);
   }
 
   .about-grid {
@@ -57,44 +63,23 @@
     --header-height: 68px;
   }
 
-  .mobile-toggle {
-    display: flex;
-  }
-
-  .nav-menu {
-    position: fixed;
-    top: var(--header-height);
-    left: 0;
-    width: 100%;
-    background: var(--bg-space);
-    backdrop-filter: var(--glass-blur);
-    border-bottom: 1px solid var(--border-glass);
-    padding: 24px 0;
-    transform: translateY(-120%);
-    opacity: 0;
-    visibility: hidden;
-    transition: all var(--trans-smooth);
-  }
-
-  .nav-menu.active {
-    transform: translateY(0);
-    opacity: 1;
-    visibility: visible;
-  }
-
-  .nav-list {
-    flex-direction: column;
-    align-items: center;
-    gap: 18px;
-  }
-
   .hero-title {
     font-size: 2.15rem;
   }
 
   .profile-photo-frame {
-    width: 105px;
-    height: 105px;
+    width: 100px;
+    height: 100px;
+  }
+
+  .hero-nav-chips {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  .nav-chip-btn {
+    padding: 10px 8px;
+    font-size: 0.8rem;
   }
 
   .skills-category-grid {
@@ -142,8 +127,7 @@
 /* Extra Small Phones (max-width: 480px) */
 @media (max-width: 480px) {
   .hero-nav-chips {
-    flex-direction: column;
-    width: 100%;
+    grid-template-columns: 1fr;
   }
 
   .nav-chip-btn {

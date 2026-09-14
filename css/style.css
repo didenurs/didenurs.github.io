@@ -381,25 +381,89 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
 }
 
-/* Photo Frame Placeholder */
-.photo-frame-wrapper {
+/* User Friendly Symmetrical Navigation Grid at Top of Hero */
+.hero-nav-buttons-wrap {
+  margin-bottom: 24px;
+  width: 100%;
+}
+
+.hero-nav-chips {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  width: 100%;
+}
+
+.nav-chip-btn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 8px;
+  padding: 11px 14px;
+  border-radius: 12px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-glass);
+  color: var(--text-primary);
+  text-decoration: none;
+  font-family: var(--font-heading);
+  font-size: 0.84rem;
+  font-weight: 600;
+  transition: all var(--trans-fast);
+  white-space: nowrap;
+}
+
+.nav-chip-btn:hover {
+  background: rgba(16, 185, 129, 0.12);
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.2);
+}
+
+.nav-chip-btn.highlight {
+  background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 18px rgba(16, 185, 129, 0.35);
+}
+
+.nav-chip-btn.highlight:hover {
+  background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+  color: #064e3b;
+  transform: translateY(-2px);
+}
+
+/* Hero Visual Column (Right side: Photo Frame on Top, Code Card Below) */
+.hero-visual {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.hero-visual .photo-frame-wrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   gap: 18px;
-  margin-bottom: 22px;
+  width: 100%;
+  max-width: 480px;
+  padding-bottom: 4px;
 }
 
 .profile-photo-frame {
-  width: 120px;
-  height: 120px;
-  border-radius: 26px;
+  width: 110px;
+  height: 110px;
+  border-radius: 24px;
   border: 2px dashed var(--accent-primary);
   background: rgba(16, 185, 129, 0.06);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 6px;
+  gap: 5px;
   position: relative;
   box-shadow: 0 0 25px rgba(16, 185, 129, 0.2);
   transition: all var(--trans-smooth);
@@ -500,70 +564,11 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.75;
   color: var(--text-secondary);
   max-width: 640px;
-  margin-bottom: 32px;
+  margin-bottom: 10px;
 }
 
 .hero-lead strong {
   color: var(--text-primary);
-}
-
-/* User Friendly Quick Navigation Buttons in Hero */
-.hero-nav-buttons-wrap {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  margin-top: 10px;
-}
-
-.hero-nav-buttons-label {
-  font-family: var(--font-code);
-  font-size: 0.78rem;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-}
-
-.hero-nav-chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.nav-chip-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 18px;
-  border-radius: 12px;
-  background: var(--bg-surface);
-  border: 1px solid var(--border-glass);
-  color: var(--text-primary);
-  text-decoration: none;
-  font-family: var(--font-heading);
-  font-size: 0.88rem;
-  font-weight: 600;
-  transition: all var(--trans-fast);
-}
-
-.nav-chip-btn:hover {
-  background: rgba(16, 185, 129, 0.12);
-  border-color: var(--accent-primary);
-  color: var(--accent-primary);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.2);
-}
-
-.nav-chip-btn.highlight {
-  background: linear-gradient(135deg, #059669 0%, #10b981 100%);
-  color: #ffffff;
-  border-color: rgba(255, 255, 255, 0.2);
-  box-shadow: 0 4px 18px rgba(16, 185, 129, 0.35);
-}
-
-.nav-chip-btn.highlight:hover {
-  background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
-  color: #064e3b;
-  transform: translateY(-2px);
 }
 
 /* Button Components */

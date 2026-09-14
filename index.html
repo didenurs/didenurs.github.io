@@ -42,7 +42,7 @@
     <span id="toast-message" class="toast-msg">Notification</span>
   </div>
 
-  <!-- Top Navigation Bar -->
+  <!-- Top Header Bar (Clean Minimalist: Brand on left, Lang & Theme on right) -->
   <header class="navbar" id="navbar">
     <div class="nav-container">
       <a href="#hero" class="brand-logo" aria-label="Didenur Sezen Homepage">
@@ -52,17 +52,6 @@
         <span class="logo-tag">dev</span>
         <span class="logo-bracket">/&gt;</span>
       </a>
-
-      <nav class="nav-menu" id="nav-menu">
-        <ul class="nav-list">
-          <li><a href="#about" class="nav-link"><span class="nav-num">01.</span> <span data-i18n="navAbout">Background</span></a></li>
-          <li><a href="#skills" class="nav-link"><span class="nav-num">02.</span> <span data-i18n="navSkills">Capabilities</span></a></li>
-          <li><a href="#projects" class="nav-link"><span class="nav-num">03.</span> <span data-i18n="navProjects">Projects</span></a></li>
-          <li><a href="#experience" class="nav-link"><span class="nav-num">04.</span> <span data-i18n="navExp">Education & Experience</span></a></li>
-          <li><a href="#certificates" class="nav-link"><span class="nav-num">05.</span> <span data-i18n="navCerts">Certifications</span></a></li>
-          <li><a href="#contact" class="nav-link"><span class="nav-num">06.</span> <span data-i18n="navContact">Connect</span></a></li>
-        </ul>
-      </nav>
 
       <div class="nav-actions">
         <!-- Language Switcher (TR / EN) -->
@@ -74,13 +63,6 @@
         <button id="theme-toggle" class="btn-control" title="Açık / Koyu Tema (Toggle Theme)" aria-label="Toggle Theme">
           <span id="theme-icon">☀️</span>
         </button>
-
-        <!-- Mobile Menu Hamburger -->
-        <button id="mobile-toggle" class="mobile-toggle" aria-label="Toggle Navigation Menu">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
       </div>
     </div>
   </header>
@@ -89,9 +71,46 @@
     <!-- HERO SECTION -->
     <section id="hero" class="hero-section">
       <div class="container hero-container">
+        
+        <!-- Left Column: Quick Navigation & Intro Content -->
         <div class="hero-content">
           
-          <!-- Photo Frame Placeholder & Direct Social Icons -->
+          <!-- Unified Symmetrical Quick Navigation (Positioned at top of hero content) -->
+          <div class="hero-nav-buttons-wrap">
+            <div class="hero-nav-chips">
+              <a href="#projects" class="nav-chip-btn highlight">
+                <span data-i18n="navProjects">Projects</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+              <a href="#about" class="nav-chip-btn" data-i18n="navAbout">Background</a>
+              <a href="#skills" class="nav-chip-btn" data-i18n="navSkills">Capabilities</a>
+              <a href="#experience" class="nav-chip-btn" data-i18n="navExp">Education & Experience</a>
+              <a href="#certificates" class="nav-chip-btn" data-i18n="navCerts">Certifications</a>
+              <a href="#contact" class="nav-chip-btn" data-i18n="navContact">Connect</a>
+            </div>
+          </div>
+
+          <div class="badge-status">
+            <span class="pulse-indicator"></span>
+            <span class="badge-text" data-i18n="heroBadge">Yeditepe & UTBM (France) • Computer Engineering</span>
+          </div>
+
+          <h1 class="hero-title">
+            <span data-i18n="heroGreeting">Hi, I'm</span> <span class="gradient-text">Didenur Sezen</span>.<br>
+            <span data-i18n="heroAction">Engineering</span> <span class="typewriter-text" id="typewriter">Distributed Systems</span>
+          </h1>
+
+          <p class="hero-lead" data-i18n="heroLead">
+            Computer Engineering student at <strong>Yeditepe University</strong>, currently pursuing specialized coursework at <strong>UTBM in France</strong>. 
+            Focused on <strong>Software & Data Technologies</strong>, I bridge low-level systems engineering (P2P multithreaded networking, Linux iptables, socket communication) 
+            with modern intelligent data processing (Neo4j Graph Data Science, Apache Spark pipelines) and robust enterprise web solutions (.NET Core & Blazor).
+          </p>
+        </div>
+
+        <!-- Right Column: Photo Frame + Social Icons (At top) & Profile JSON Card (Below it) -->
+        <div class="hero-visual">
+          
+          <!-- Photo Frame Placeholder & Direct Social Icons (Now above the terminal/JSON card) -->
           <div class="photo-frame-wrapper">
             <div class="profile-photo-frame" title="Fotoğraf Alanı / Photo Frame">
               <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
@@ -114,41 +133,7 @@
             </div>
           </div>
 
-          <div class="badge-status">
-            <span class="pulse-indicator"></span>
-            <span class="badge-text" data-i18n="heroBadge">Yeditepe & UTBM (France) • Computer Engineering</span>
-          </div>
-
-          <h1 class="hero-title">
-            <span data-i18n="heroGreeting">Hi, I'm</span> <span class="gradient-text">Didenur Sezen</span>.<br>
-            <span data-i18n="heroAction">Engineering</span> <span class="typewriter-text" id="typewriter">Distributed Systems</span>
-          </h1>
-
-          <p class="hero-lead" data-i18n="heroLead">
-            Computer Engineering student at <strong>Yeditepe University</strong>, currently pursuing specialized coursework at <strong>UTBM in France</strong>. 
-            Focused on <strong>Software & Data Technologies</strong>, I bridge low-level systems engineering (P2P multithreaded networking, Linux iptables, socket communication) 
-            with modern intelligent data processing (Neo4j Graph Data Science, Apache Spark pipelines) and robust enterprise web solutions (.NET Core & Blazor).
-          </p>
-
-          <!-- User-Friendly Direct Navigation Chips -->
-          <div class="hero-nav-buttons-wrap">
-            <span class="hero-nav-buttons-label" data-i18n="quickNav">Quick Navigation / Keşfet</span>
-            <div class="hero-nav-chips">
-              <a href="#projects" class="nav-chip-btn highlight">
-                <span data-i18n="navProjects">View Projects</span>
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-              </a>
-              <a href="#about" class="nav-chip-btn" data-i18n="navAbout">Engineering Background</a>
-              <a href="#skills" class="nav-chip-btn" data-i18n="navSkills">Capabilities</a>
-              <a href="#experience" class="nav-chip-btn" data-i18n="navExp">Education & Experience</a>
-              <a href="#certificates" class="nav-chip-btn" data-i18n="navCerts">Certifications</a>
-              <a href="#contact" class="nav-chip-btn" data-i18n="navContact">Connect</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Hero Graphic: Interactive JSON Card -->
-        <div class="hero-visual">
+          <!-- JSON Profile Card -->
           <div class="interactive-card tilt-element glass-panel">
             <div class="card-header-bar">
               <div class="window-dots">
@@ -188,13 +173,7 @@
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="scroll-indicator">
-        <a href="#about" aria-label="Scroll to About Section">
-          <span class="mouse-icon"><span class="wheel"></span></span>
-          <span class="scroll-text" data-i18n="exploreBtn">EXPLORE</span>
-        </a>
       </div>
     </section>
 

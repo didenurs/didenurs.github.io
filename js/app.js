@@ -676,9 +676,7 @@ if (contactForm) {
 // ==========================================================================
 (function initNavbar() {
   const navbar = document.getElementById('navbar');
-  const mobileToggle = document.getElementById('mobile-toggle');
-  const navMenu = document.getElementById('nav-menu');
-  const navLinks = document.querySelectorAll('.nav-link');
+  if (!navbar) return;
 
   window.addEventListener('scroll', () => {
     if (window.scrollY > 40) {
@@ -686,33 +684,5 @@ if (contactForm) {
     } else {
       navbar.classList.remove('scrolled');
     }
-
-    const sections = document.querySelectorAll('section');
-    let current = '';
-    sections.forEach((sec) => {
-      const top = sec.offsetTop - 120;
-      if (window.scrollY >= top) {
-        current = sec.getAttribute('id');
-      }
-    });
-
-    navLinks.forEach((link) => {
-      link.classList.remove('active');
-      if (link.getAttribute('href') === `#${current}`) {
-        link.classList.add('active');
-      }
-    });
   });
-
-  if (mobileToggle && navMenu) {
-    mobileToggle.addEventListener('click', () => {
-      navMenu.classList.toggle('active');
-    });
-
-    navLinks.forEach((link) => {
-      link.addEventListener('click', () => {
-        navMenu.classList.remove('active');
-      });
-    });
-  }
 })();
