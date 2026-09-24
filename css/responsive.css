@@ -52,12 +52,6 @@
     margin: 0 auto;
   }
 
-  .hero-focus-grid {
-    order: 7;
-    width: 100%;
-    max-width: 600px;
-    margin: 10px auto 0;
-  }
 
   .skills-category-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -239,11 +233,6 @@
     width: 100%;
     max-width: 440px;
     padding: 16px;
-  }
-
-  /* Keep mobile hero uncluttered and fast by hiding focus grid on small screens */
-  .hero-focus-grid {
-    display: none;
   }
 
   .skills-category-grid {
