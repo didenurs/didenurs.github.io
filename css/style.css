@@ -237,6 +237,7 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 16px;
 }
 
 .brand-logo {
@@ -249,6 +250,7 @@ h1, h2, h3, h4, h5, h6 {
   gap: 2px;
   color: var(--text-primary);
   transition: transform var(--trans-fast);
+  flex-shrink: 0;
 }
 
 .brand-logo:hover {
@@ -260,59 +262,33 @@ h1, h2, h3, h4, h5, h6 {
 .logo-dot { color: var(--accent-primary-hover); }
 .logo-tag { color: var(--accent-highlight); }
 
-.nav-menu {
+/* Navigation Chips Container in Navbar */
+.nav-chips-container {
   display: flex;
   align-items: center;
+  justify-content: center;
+  flex: 1;
+  margin: 0 12px;
+  overflow-x: auto;
+  scrollbar-width: none;
 }
 
-.nav-list {
-  display: flex;
-  list-style: none;
-  gap: 24px;
+.nav-chips-container::-webkit-scrollbar {
+  display: none;
 }
 
-.nav-link {
-  text-decoration: none;
-  color: var(--text-secondary);
-  font-size: 0.92rem;
-  font-weight: 500;
-  transition: color var(--trans-fast);
+.navbar-chips {
   display: flex;
   align-items: center;
-  gap: 6px;
-  padding: 8px 0;
-  position: relative;
-}
-
-.nav-num {
-  font-family: var(--font-code);
-  font-size: 0.75rem;
-  color: var(--accent-primary);
-}
-
-.nav-link:hover, .nav-link.active {
-  color: var(--accent-primary);
-}
-
-.nav-link::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: linear-gradient(90deg, var(--accent-primary), var(--accent-highlight));
-  transition: width var(--trans-smooth);
-}
-
-.nav-link:hover::after, .nav-link.active::after {
-  width: 100%;
+  gap: 8px;
+  flex-wrap: nowrap;
 }
 
 .nav-actions {
   display: flex;
   align-items: center;
   gap: 10px;
+  flex-shrink: 0;
 }
 
 /* Control Buttons (Lang & Theme) */
@@ -388,17 +364,10 @@ h1, h2, h3, h4, h5, h6 {
   width: 100%;
 }
 
-/* User Friendly Symmetrical Navigation Grid at Top of Hero */
-.hero-nav-buttons-wrap {
-  margin-bottom: 24px;
-  width: 100%;
-}
-
 .hero-nav-chips {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  width: 100%;
+  display: flex;
+  gap: 8px;
+  width: auto;
 }
 
 .nav-chip-btn {
@@ -406,15 +375,15 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
   justify-content: center;
   text-align: center;
-  gap: 8px;
-  padding: 11px 14px;
+  gap: 7px;
+  padding: 8px 14px;
   border-radius: 12px;
   background: var(--bg-surface);
   border: 1px solid var(--border-glass);
   color: var(--text-primary);
   text-decoration: none;
   font-family: var(--font-heading);
-  font-size: 0.84rem;
+  font-size: 0.82rem;
   font-weight: 600;
   transition: all var(--trans-fast);
   white-space: nowrap;
@@ -465,23 +434,23 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .profile-photo-frame {
-  width: 185px;
-  height: 185px;
-  border-radius: 38px;
+  width: 215px;
+  height: 215px;
+  border-radius: 44px;
   border: 2px solid var(--accent-primary);
   background: rgba(16, 185, 129, 0.08);
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
-  box-shadow: 0 0 28px rgba(16, 185, 129, 0.28);
+  box-shadow: 0 0 32px rgba(16, 185, 129, 0.32);
   transition: all var(--trans-smooth);
   overflow: hidden;
 }
 
 .profile-photo-frame:hover {
-  transform: scale(1.04);
-  box-shadow: 0 0 35px rgba(16, 185, 129, 0.45);
+  transform: scale(1.03);
+  box-shadow: 0 0 40px rgba(16, 185, 129, 0.48);
   border-color: var(--accent-primary-hover);
 }
 

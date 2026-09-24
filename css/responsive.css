@@ -31,11 +31,7 @@
     margin-right: auto;
   }
 
-  .hero-nav-chips {
-    max-width: 580px;
-    margin: 0 auto;
-    grid-template-columns: repeat(3, 1fr);
-  }
+
 
   .about-grid {
     grid-template-columns: 1fr;
@@ -74,19 +70,25 @@
   }
 
   .profile-photo-frame {
-    width: 150px;
-    height: 150px;
-    border-radius: 32px;
+    width: 175px;
+    height: 175px;
+    border-radius: 36px;
   }
 
-  .hero-nav-chips {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 8px;
+  .nav-chips-container {
+    margin: 0 8px;
+    justify-content: flex-start;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .navbar-chips {
+    gap: 6px;
   }
 
   .nav-chip-btn {
-    padding: 10px 8px;
-    font-size: 0.8rem;
+    padding: 6px 11px;
+    font-size: 0.76rem;
+    border-radius: 10px;
   }
 
   .skills-category-grid {
@@ -133,13 +135,9 @@
 
 /* Extra Small Phones (max-width: 480px) */
 @media (max-width: 480px) {
-  .hero-nav-chips {
-    grid-template-columns: 1fr;
-  }
-
   .nav-chip-btn {
-    width: 100%;
-    justify-content: center;
+    width: auto;
+    flex-shrink: 0;
   }
 
   .projects-filter-bar {
