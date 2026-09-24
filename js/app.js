@@ -847,12 +847,13 @@ window.openProjectModal = function (projectId) {
   if (openCVBtn) openCVBtn.addEventListener('click', openModal);
   if (heroCvBtn) heroCvBtn.addEventListener('click', openModal);
 
-  if (closeCVBtn && cvModal) {
-    closeCVBtn.addEventListener('click', () => {
+  const closeCVBtns = document.querySelectorAll('#cv-modal-close-btn, #cv-modal-close-btn-mobile, .cv-close-btn-desktop, .cv-close-btn-mobile');
+  closeCVBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
       cvModal.classList.remove('active');
       cvModal.setAttribute('aria-hidden', 'true');
     });
-  }
+  });
 
   if (cvModal) {
     cvModal.addEventListener('click', (e) => {
