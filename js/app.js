@@ -20,13 +20,13 @@ const translations = {
     heroBadge: "Yeditepe & UTBM (France) • Computer Engineering",
     heroGreeting: "Hi, I'm",
     heroAction: "Engineering",
-    heroLead: "Computer Engineering student at Yeditepe University, currently pursuing specialized coursework at UTBM in France. Focused on Software & Data Technologies, I bridge low-level systems engineering (P2P multithreaded networking, Linux iptables, socket communication) with modern intelligent data processing (Neo4j Graph Data Science, Apache Spark pipelines) and robust enterprise web solutions (.NET Core & Blazor).",
+    heroLead: "Senior Computer Engineering student at Yeditepe University graduating next semester, having recently completed an exchange program at UTBM in France. Focused on Software & Data Technologies, I bridge low-level systems engineering (P2P multithreaded networking, Linux iptables, socket communication) with modern intelligent data processing (Neo4j Graph Data Science, Apache Spark pipelines) and robust enterprise web solutions (.NET Core & Blazor).",
     quickNav: "Quick Navigation",
     exploreBtn: "EXPLORE",
 
     aboutTitle: "Engineering Background & Core Focus",
     aboutHeadline: "Transforming Complex Challenges into Scalable Software Solutions",
-    aboutP1: "I am a Computer Science Engineering student at Yeditepe University, currently broadening my academic and technical perspective at Université de Technologie de Belfort-Montbéliard (UTBM) in France. My technical journey bridges low-level systems engineering with intelligent data analytics and modern enterprise software.",
+    aboutP1: "I am a senior Computer Science Engineering student at Yeditepe University, graduating in one semester and having recently completed an academic exchange program at Université de Technologie de Belfort-Montbéliard (UTBM) in France. My technical journey bridges low-level systems engineering with intelligent data analytics and modern enterprise software.",
     aboutP2: "Whether it's building a P2P multi-source video streaming protocol from scratch in Java, orchestrating distributed data pipelines using Apache Spark, querying complex topological knowledge models with Neo4j & SPARQL, or developing reactive web applications with C# .NET and Blazor, I thrive on engineering scalable, robust systems.",
     aboutP3: "Beyond technical depth, I have experience working within cross-cultural teams (such as developing accessibility solutions during the international Innovation Crunch Time in France) and delivering collaborative features under real-world development workflows.",
 
@@ -114,13 +114,13 @@ const translations = {
     heroBadge: "Yeditepe & UTBM (Fransa) • Bilgisayar Mühendisliği",
     heroGreeting: "Merhaba, Ben",
     heroAction: "Geliştirdiğim Alan:",
-    heroLead: "Yeditepe Üniversitesi Bilgisayar Mühendisliği öğrencisiyim ve şu anda eğitimime Fransa'da UTBM'de devam etmekteyim. Yazılım ve Veri Teknolojileri alanında uzmanlaşarak, alt seviye sistem mühendisliğini (P2P çok iş parçacıklı ağlar, Linux iptables, soket programlama), modern akıllı veri işleme (Neo4j Graph Data Science, Apache Spark veri hatları) ve kurumsal web çözümleri (.NET Core & Blazor) ile birleştiriyorum.",
+    heroLead: "Yeditepe Üniversitesi Bilgisayar Mühendisliği son sınıf öğrencisiyim ve bir dönem sonra mezun olacağım. Bir önceki dönem Fransa'da UTBM bünyesinde değişim eğitimimi tamamladım. Yazılım ve Veri Teknolojileri alanında uzmanlaşarak, alt seviye sistem mühendisliğini (P2P çok iş parçacıklı ağlar, Linux iptables, soket programlama), modern akıllı veri işleme (Neo4j Graph Data Science, Apache Spark veri hatları) ve kurumsal web çözümleri (.NET Core & Blazor) ile birleştiriyorum.",
     quickNav: "Hızlı Gezinme",
     exploreBtn: "KEŞFET",
 
     aboutTitle: "Mühendislik Arka Planı & Odak Alanları",
     aboutHeadline: "Karmaşık Zorlukları Ölçeklenebilir Yazılım Çözümlerine Dönüştürmek",
-    aboutP1: "Yeditepe Üniversitesi Bilgisayar Mühendisliği bölümünde lisans eğitimime devam ederken, Fransa'da Université de Technologie de Belfort-Montbéliard (UTBM) bünyesinde akademik ve teknik vizyonumu genişletiyorum. Çalışmalarım, sistem programlama ile akıllı veri analitiğini ve modern kurumsal yazılımları buluşturmaktadır.",
+    aboutP1: "Yeditepe Üniversitesi Bilgisayar Mühendisliği bölümünde son sınıf öğrencisiyim ve bir dönem sonra mezun olacağım; bir önceki dönemde ise Fransa'da Université de Technologie de Belfort-Montbéliard (UTBM) bünyesinde değişim programımı başarıyla tamamladım. Çalışmalarım, sistem programlama ile akıllı veri analitiğini ve modern kurumsal yazılımları buluşturmaktadır.",
     aboutP2: "Java ile sıfırdan P2P çok kaynaklı video akış protokolü geliştirmek, Apache Spark ile dağıtık veri hatları kurmak, Neo4j & SPARQL ile bilgi modellerini topolojik olarak sorgulamak ya da C# .NET ve Blazor ile reaktif web uygulamaları inşa etmek en büyük tutkumdur.",
     aboutP3: "Teknik derinliğimin yanı sıra, Fransa'daki uluslararası Innovation Crunch Time etkinliğinde 6 farklı ülkeden 10 kişilik çok disiplinli bir takımla engelli bireyler için erişilebilirlik prototipi geliştirmek gibi uluslararası takım çalışması ve çevik geliştirme deneyimlerine sahibim.",
 
