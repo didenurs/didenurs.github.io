@@ -879,3 +879,41 @@ if (contactForm) {
     }
   });
 })();
+
+// ==========================================================================
+// 12. SCROLL TO TOP BUTTON (VISIBLE FROM ABOUT SECTION ONWARD)
+// ==========================================================================
+(function initScrollToTop() {
+  const scrollTopBtn = document.getElementById('scroll-to-top');
+  const aboutSection = document.getElementById('about');
+  if (!scrollTopBtn) return;
+
+  function handleScroll() {
+    if (aboutSection) {
+      const rect = aboutSection.getBoundingClientRect();
+      // Show when the top of the About section reaches within 140px of the viewport top or has passed it
+      if (rect.top <= 140) {
+        scrollTopBtn.classList.add('visible');
+      } else {
+        scrollTopBtn.classList.remove('visible');
+      }
+    } else {
+      if (window.scrollY > 400) {
+        scrollTopBtn.classList.add('visible');
+      } else {
+        scrollTopBtn.classList.remove('visible');
+      }
+    }
+  }
+
+  window.addEventListener('scroll', handleScroll, { passive: true });
+  handleScroll();
+
+  scrollTopBtn.addEventListener('click', () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+})();
+

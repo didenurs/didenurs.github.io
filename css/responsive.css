@@ -74,9 +74,9 @@
   }
 
   .profile-photo-frame {
-    width: 135px;
-    height: 135px;
-    border-radius: 28px;
+    width: 150px;
+    height: 150px;
+    border-radius: 32px;
   }
 
   .hero-nav-chips {
@@ -150,4 +150,12 @@
     padding: 8px 14px;
     font-size: 0.8rem;
   }
+
+  .scroll-top-btn {
+    bottom: 20px;
+    right: 20px;
+    width: 44px;
+    height: 44px;
+  }
 }
+
