@@ -369,6 +369,24 @@ function showToast(message) {
   const filterBtns = document.querySelectorAll('.filter-btn');
   const projectCards = document.querySelectorAll('.project-card');
 
+  function updateCenteredProjects() {
+    const isDesktop = window.innerWidth > 1024;
+    const isTablet = window.innerWidth > 768 && window.innerWidth <= 1024;
+    const visibleCards = Array.from(document.querySelectorAll('.projects-grid > .project-card:not(.hide)'));
+
+    projectCards.forEach((card) => {
+      card.classList.remove('center-single-last', 'center-single-last-2col');
+    });
+
+    if (visibleCards.length === 0) return;
+
+    if (isDesktop && visibleCards.length % 3 === 1) {
+      visibleCards[visibleCards.length - 1].classList.add('center-single-last');
+    } else if (isTablet && visibleCards.length % 2 === 1) {
+      visibleCards[visibleCards.length - 1].classList.add('center-single-last-2col');
+    }
+  }
+
   filterBtns.forEach((btn) => {
     btn.addEventListener('click', () => {
       filterBtns.forEach((b) => b.classList.remove('active'));
@@ -388,8 +406,13 @@ function showToast(message) {
           card.classList.add('hide');
         }
       });
+
+      updateCenteredProjects();
     });
   });
+
+  window.addEventListener('resize', updateCenteredProjects);
+  updateCenteredProjects();
 })();
 
 // ==========================================================================

@@ -61,6 +61,14 @@
     grid-template-columns: repeat(2, 1fr);
   }
 
+  .projects-grid > .project-card.center-single-last-2col,
+  .projects-grid > .project-card:last-child:nth-child(2n + 1) {
+    grid-column: 1 / -1;
+    max-width: 520px;
+    justify-self: center;
+    width: 100%;
+  }
+
   .certs-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -241,6 +249,15 @@
 
   .projects-grid {
     grid-template-columns: 1fr;
+  }
+
+  .projects-grid > .project-card.center-single-last,
+  .projects-grid > .project-card.center-single-last-2col,
+  .projects-grid > .project-card:last-child:nth-child(3n + 1),
+  .projects-grid > .project-card:last-child:nth-child(2n + 1) {
+    grid-column: auto;
+    max-width: 100%;
+    justify-self: stretch;
   }
 
   .certs-grid {

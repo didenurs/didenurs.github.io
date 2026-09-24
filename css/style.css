@@ -991,6 +991,14 @@ html[lang="en"] .hero-title {
   gap: 28px;
 }
 
+/* Center the single remaining project in a 3-column row */
+@media (min-width: 1025px) {
+  .projects-grid > .project-card.center-single-last,
+  .projects-grid > .project-card:last-child:nth-child(3n + 1) {
+    grid-column: 2;
+  }
+}
+
 .project-card {
   padding: 30px;
   display: flex;
