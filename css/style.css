@@ -1812,25 +1812,26 @@ html[lang="en"] .hero-title {
   margin-top: 14px;
 }
 
-/* Floating Popover */
+/* Floating Popover (Fixed positioning & pure opacity fade - zero shifting/kayma) */
 .skill-project-popover {
-  position: absolute;
+  position: fixed;
   z-index: 1000;
-  min-width: 300px;
+  min-width: 290px;
   max-width: 380px;
-  background: rgba(15, 23, 42, 0.96);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  border: 1px solid rgba(16, 185, 129, 0.45);
+  background: rgba(11, 20, 26, 0.98);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(16, 185, 129, 0.5);
   border-radius: 14px;
   padding: 16px;
-  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.65), 0 0 25px rgba(16, 185, 129, 0.2);
-  animation: popoverFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.75), 0 0 25px rgba(16, 185, 129, 0.2);
+  animation: popoverFadeIn 0.12s ease-out forwards;
+  transform: none !important;
 }
 
 @keyframes popoverFadeIn {
-  from { opacity: 0; transform: translateY(6px) scale(0.96); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .popover-header {
@@ -1892,11 +1893,12 @@ html[lang="en"] .hero-title {
   border-radius: 8px;
   padding: 8px 12px;
   transition: background var(--trans-fast), border-color var(--trans-fast);
+  transform: none !important;
 }
 
 .popover-project-item:hover {
-  background: rgba(16, 185, 129, 0.1);
-  border-color: rgba(16, 185, 129, 0.4);
+  background: rgba(16, 185, 129, 0.12);
+  border-color: rgba(16, 185, 129, 0.45);
 }
 
 .popover-project-title {
@@ -1919,14 +1921,22 @@ html[lang="en"] .hero-title {
   padding: 6px 12px;
   cursor: pointer;
   white-space: nowrap;
-  transition: all var(--trans-fast);
+  transition: background var(--trans-fast), box-shadow var(--trans-fast);
   flex-shrink: 0;
+  transform: none !important;
 }
 
 .btn-go-to-project:hover {
   background: var(--accent-primary-hover);
-  transform: scale(1.05);
-  box-shadow: 0 0 12px rgba(16, 185, 129, 0.45);
+  box-shadow: 0 0 14px rgba(16, 185, 129, 0.5);
+  transform: none !important;
+}
+
+.skill-tag.has-projects.active-tag {
+  border-color: var(--accent-primary);
+  background: rgba(16, 185, 129, 0.22);
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.35);
+  transform: none !important;
 }
 
 /* Glowing Highlight Animation on Target Project / Experience Card */
@@ -2151,33 +2161,40 @@ html[lang="en"] .hero-title {
   }
 }
 
-/* Toast */
+/* Toast Notification (Ultra sleek & minimal pill design) */
 .toast {
   position: fixed;
   bottom: 24px;
-  left: 24px;
-  z-index: 300;
+  left: 50%;
+  transform: translateX(-50%) translateY(80px);
+  z-index: 9999;
   display: flex;
   align-items: center;
-  gap: 12px;
-  background: var(--bg-surface);
-  border: 1px solid var(--accent-primary);
-  border-radius: 12px;
-  padding: 12px 20px;
+  gap: 10px;
+  background: rgba(11, 20, 26, 0.95);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(16, 185, 129, 0.45);
+  border-radius: 50px;
+  padding: 8px 18px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(16, 185, 129, 0.25);
   color: var(--text-primary);
-  font-size: 0.9rem;
+  font-size: 0.84rem;
   font-weight: 600;
-  transform: translateY(100px);
   opacity: 0;
-  transition: transform var(--trans-bounce), opacity var(--trans-smooth);
+  pointer-events: none;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
 }
 
-.toast.show { transform: translateY(0); opacity: 1; }
+.toast.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
 
 .toast-icon {
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
   background: var(--accent-primary);
   color: #064e3b;
@@ -2185,7 +2202,8 @@ html[lang="en"] .hero-title {
   align-items: center;
   justify-content: center;
   font-weight: 900;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
+  flex-shrink: 0;
 }
 
 /* ==========================================================================

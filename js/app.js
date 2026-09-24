@@ -274,7 +274,7 @@ function showToast(message) {
   clearTimeout(window._toastTimeout);
   window._toastTimeout = setTimeout(() => {
     toast.classList.remove('show');
-  }, 3000);
+  }, 1800);
 }
 
 // ==========================================================================
@@ -305,8 +305,25 @@ function showToast(message) {
   let charIndex = 0;
   let isDeleting = false;
   let typingSpeed = 90;
+  let isHeroVisible = true;
+
+  // Pause typewriter animation when hero is off-screen to eliminate any possible DOM reflow/layout shifts
+  const heroSection = document.getElementById('hero');
+  if ('IntersectionObserver' in window && heroSection) {
+    const heroObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        isHeroVisible = entry.isIntersecting;
+      });
+    }, { threshold: 0.05 });
+    heroObserver.observe(heroSection);
+  }
 
   function type() {
+    if (!isHeroVisible) {
+      setTimeout(type, 400);
+      return;
+    }
+
     const list = phrases[currentLang] || phrases.en;
     const current = list[phraseIndex % list.length];
 
@@ -691,6 +708,7 @@ window.openProjectModal = function (projectId) {
       activePopover.remove();
       activePopover = null;
     }
+    document.querySelectorAll('.skill-tag.has-projects').forEach(t => t.classList.remove('active-tag'));
   }
 
   // Close when clicking outside
@@ -700,10 +718,16 @@ window.openProjectModal = function (projectId) {
     }
   });
 
-  // Close on Escape key
+  // Close on Escape key, window resize or page scroll to avoid positioning disconnects
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') closeActivePopover();
   });
+  window.addEventListener('scroll', () => {
+    if (activePopover) closeActivePopover();
+  }, { passive: true });
+  window.addEventListener('resize', () => {
+    if (activePopover) closeActivePopover();
+  }, { passive: true });
 
   const skillTags = document.querySelectorAll('.skill-tag.has-projects');
   skillTags.forEach((tag) => {
@@ -715,6 +739,7 @@ window.openProjectModal = function (projectId) {
       if (!projectKeys.length) return;
 
       closeActivePopover();
+      tag.classList.add('active-tag');
 
       const popover = document.createElement('div');
       popover.className = 'skill-project-popover glass-panel';
@@ -757,18 +782,29 @@ window.openProjectModal = function (projectId) {
       document.body.appendChild(popover);
       activePopover = popover;
 
-      // Position popover relative to the clicked tag
+      // Position popover using rock-solid fixed coordinates (zero vertical sliding or layout drift)
       const rect = tag.getBoundingClientRect();
+      const isMobile = window.innerWidth <= 768;
       const popWidth = Math.min(360, window.innerWidth - 30);
-      let left = rect.left + window.scrollX;
-      let top = rect.bottom + window.scrollY + 8;
-
-      // Keep within viewport horizontally
-      if (left + popWidth > window.innerWidth - 15) {
-        left = window.innerWidth - popWidth - 15;
+      
+      let left = isMobile ? Math.max(15, (window.innerWidth - popWidth) / 2) : rect.left;
+      if (!isMobile) {
+        if (left + popWidth > window.innerWidth - 15) {
+          left = window.innerWidth - popWidth - 15;
+        }
+        if (left < 15) left = 15;
       }
-      if (left < 15) left = 15;
 
+      // Vertical placement: default below tag, flip above if bottom viewport is cramped
+      let top = rect.bottom + 8;
+      if (top + 160 > window.innerHeight - 15) {
+        top = Math.max(15, rect.top - 160);
+      }
+      if (isMobile && (top < 70 || top + 160 > window.innerHeight)) {
+        top = Math.max(80, (window.innerHeight - 180) / 2);
+      }
+
+      popover.style.position = 'fixed';
       popover.style.width = `${popWidth}px`;
       popover.style.left = `${left}px`;
       popover.style.top = `${top}px`;
@@ -787,7 +823,6 @@ window.openProjectModal = function (projectId) {
         btn.addEventListener('click', (ev) => {
           ev.stopPropagation();
           const targetId = btn.getAttribute('data-target-elem');
-          const targetTitle = btn.getAttribute('data-title');
           closeActivePopover();
 
           if (!targetId) return;
@@ -819,8 +854,6 @@ window.openProjectModal = function (projectId) {
             setTimeout(() => {
               targetElem.classList.remove('card-highlight-pulse');
             }, 3000);
-
-            showToast(isTr ? `🎯 ${targetTitle} bölümüne gidildi` : `🎯 Navigated to ${targetTitle}`);
           }
         });
       });
@@ -873,7 +906,6 @@ if (langToggleBtn) {
   langToggleBtn.addEventListener('click', () => {
     const nextLang = currentLang === 'en' ? 'tr' : 'en';
     applyLanguage(nextLang);
-    showToast(nextLang === 'tr' ? 'Dil Türkçe yapıldı 🇹🇷' : 'Language set to English 🇬🇧');
   });
 }
 
@@ -882,7 +914,6 @@ if (themeToggleBtn) {
   themeToggleBtn.addEventListener('click', () => {
     const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
     applyTheme(nextTheme);
-    showToast(nextTheme === 'light' ? 'Açık Tema / Light Mode ☀️' : 'Koyu Tema / Dark Mode 🌙');
   });
 }
 
@@ -905,7 +936,8 @@ if (contactForm) {
     const fullSubject = encodeURIComponent(`[Portfolio Contact] ${subject} - ${name}`);
     const fullBody = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
 
-    showToast('Opening email client...');
+    const emailToastMsg = currentLang === 'tr' ? 'E-posta istemcisi açılıyor...' : 'Opening email client...';
+    showToast(emailToastMsg);
     window.location.href = `mailto:didenurszn@gmail.com?subject=${fullSubject}&body=${fullBody}`;
   });
 }
