@@ -91,8 +91,11 @@ const translations = {
     contactSubtitle: "I am always open to discussing distributed software architectures, data science challenges, internship/full-time opportunities, or innovative engineering collaborations.",
     contactReach: "Reach Out Directly",
     contactReachDesc: "Feel free to connect via email, LinkedIn, or check out my code repositories on GitHub.",
-    btnCv: "View & Print Verified CV",
-    btnPrint: "Print / Save as PDF",
+    btnCv: "View & Download Verified CV",
+    btnDownloadCv: "Download PDF",
+    btnOpenTab: "Open in New Tab",
+    cvModalTitle: "Curriculum Vitae — Didenur Sezen",
+    skillsHint: "Click any capability to view and navigate to its associated project or experience.",
     formTitle: "Send a Direct Message",
     formLabelName: "Your Name",
     formLabelEmail: "Your Email",
@@ -185,8 +188,11 @@ const translations = {
     contactSubtitle: "Dağıtık yazılım mimarileri, veri bilimi projeleri, staj/iş fırsatları veya yenilikçi mühendislik iş birlikleri hakkında görüşmeye her zaman açığım.",
     contactReach: "Doğrudan İletişim",
     contactReachDesc: "E-posta, LinkedIn veya GitHub üzerindeki kod depolarım aracılığıyla bana kolayca ulaşabilirsiniz.",
-    btnCv: "CV'yi Görüntüle & Yazdır",
-    btnPrint: "Yazdır / PDF Olarak Kaydet",
+    btnCv: "CV'yi Görüntüle & İndir",
+    btnDownloadCv: "CV İndir (PDF)",
+    btnOpenTab: "Yeni Sekmede Aç",
+    cvModalTitle: "Özgeçmiş (CV) — Didenur Sezen",
+    skillsHint: "Bu yeteneğin kullanıldığı projeyi görmek için terimlerin üzerine tıklayabilirsiniz.",
     formTitle: "Mesaj Gönderin",
     formLabelName: "Adınız Soyadınız",
     formLabelEmail: "E-posta Adresiniz",
@@ -565,45 +571,229 @@ window.openProjectModal = function (projectId) {
   return true;
 };
 
-// Modal Open Trigger Listeners
-document.querySelectorAll('[data-open-modal]').forEach((btn) => {
-  btn.addEventListener('click', (e) => {
-    e.preventDefault();
-    const id = btn.getAttribute('data-open-modal');
-    window.openProjectModal(id);
+// ==========================================================================
+// 7. CLICKABLE PROJECT CARDS (DEMO NAVIGATION)
+// ==========================================================================
+(function initClickableProjectDemoCards() {
+  const demoCards = document.querySelectorAll('.project-card[data-demo-url]');
+  demoCards.forEach((card) => {
+    card.addEventListener('click', (e) => {
+      // If user clicked directly on an anchor or button inside, allow default navigation
+      if (e.target.closest('a') || e.target.closest('button')) return;
+      const url = card.getAttribute('data-demo-url');
+      if (url) {
+        window.open(url, '_blank', 'noopener,noreferrer');
+      }
+    });
   });
-});
-
-// Modal Close Listeners
-const projectModal = document.getElementById('project-modal');
-const modalCloseBtn = document.getElementById('modal-close-btn');
-if (modalCloseBtn && projectModal) {
-  modalCloseBtn.addEventListener('click', () => {
-    projectModal.classList.remove('active');
-    projectModal.setAttribute('aria-hidden', 'true');
-  });
-}
-
-window.addEventListener('click', (e) => {
-  if (projectModal && e.target === projectModal) {
-    projectModal.classList.remove('active');
-    projectModal.setAttribute('aria-hidden', 'true');
-  }
-  const cvModal = document.getElementById('cv-modal');
-  if (cvModal && e.target === cvModal) {
-    cvModal.classList.remove('active');
-    cvModal.setAttribute('aria-hidden', 'true');
-  }
-});
+})();
 
 // ==========================================================================
-// 8. CV MODAL & PRINT ENGINE
+// 8. CAPABILITIES -> PROJECT INTERACTIVE NAVIGATION
+// ==========================================================================
+(function initCapabilitiesNavigation() {
+  const projectDirectory = {
+    firewall: {
+      titleEn: "Linux Firewall Rule Management & Monitoring",
+      titleTr: "Linux Güvenlik Duvarı Kural Yönetimi (iptables)",
+      elementId: "project-firewall",
+      isExp: false
+    },
+    p2p: {
+      titleEn: "Decentralized P2P Video Streaming Application",
+      titleTr: "Merkeziyetsiz P2P Video Akış Uygulaması",
+      elementId: "project-p2p",
+      isExp: false
+    },
+    graph: {
+      titleEn: "Semantic Web, Ontologies & Neo4j Graph Analytics",
+      titleTr: "Semantik Web & Neo4j Graf Veri Analitiği",
+      elementId: "project-graph",
+      isExp: false
+    },
+    spark: {
+      titleEn: "Intelligent Analytics & Distributed Data Pipeline",
+      titleTr: "Akıllı Analitik & Apache Spark Büyük Veri Hattı",
+      elementId: "project-spark",
+      isExp: false
+    },
+    blockchain: {
+      titleEn: "Blockchain & Multi-Node Smart Contracts",
+      titleTr: "Blokzincir & Çok Düğümlü Akıllı Sözleşmeler",
+      elementId: "project-blockchain",
+      isExp: false
+    },
+    parking: {
+      titleEn: "Smart Parking Management System Website",
+      titleTr: "Akıllı Otopark Yönetim Sistemi Web Platformu",
+      elementId: "project-parking",
+      isExp: false
+    },
+    music: {
+      titleEn: "Database-Driven Music Player Web Platform",
+      titleTr: "Veritabanı Destekli Müzik Çalar Web Platformu",
+      elementId: "project-music",
+      isExp: false
+    },
+    cloudpeer: {
+      titleEn: "Cloudpeer Global Technology (.NET / Blazor Internship)",
+      titleTr: "Cloudpeer Global Technology (C# / .NET / Blazor Stajı)",
+      elementId: "exp-cloudpeer",
+      isExp: true
+    }
+  };
+
+  let activePopover = null;
+
+  function closeActivePopover() {
+    if (activePopover) {
+      activePopover.remove();
+      activePopover = null;
+    }
+  }
+
+  // Close when clicking outside
+  document.addEventListener('click', (e) => {
+    if (activePopover && !activePopover.contains(e.target) && !e.target.closest('.skill-tag.has-projects')) {
+      closeActivePopover();
+    }
+  });
+
+  // Close on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeActivePopover();
+  });
+
+  const skillTags = document.querySelectorAll('.skill-tag.has-projects');
+  skillTags.forEach((tag) => {
+    tag.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const skillName = tag.getAttribute('data-skill') || tag.innerText.trim();
+      const projectKeys = (tag.getAttribute('data-projects') || '').split(',').map(s => s.trim()).filter(Boolean);
+      
+      if (!projectKeys.length) return;
+
+      closeActivePopover();
+
+      const popover = document.createElement('div');
+      popover.className = 'skill-project-popover glass-panel';
+      
+      const isTr = currentLang === 'tr';
+      const labelText = isTr ? 'Bu yeteneğin kullanıldığı projeler & deneyimler:' : 'Associated projects & experience:';
+      const goBtnText = isTr ? 'Projeye Git' : 'Go to Project';
+      const goExpText = isTr ? 'Deneyime Git' : 'Go to Experience';
+
+      let itemsHtml = '';
+      projectKeys.forEach((key) => {
+        const item = projectDirectory[key];
+        if (!item) return;
+        const title = isTr ? item.titleTr : item.titleEn;
+        const btnLabel = item.isExp ? goExpText : goBtnText;
+        itemsHtml += `
+          <div class="popover-project-item">
+            <span class="popover-project-title">${title}</span>
+            <button class="btn-go-to-project" data-target-elem="${item.elementId}" data-title="${title}">
+              <span>${btnLabel}</span> →
+            </button>
+          </div>
+        `;
+      });
+
+      popover.innerHTML = `
+        <div class="popover-header">
+          <span class="popover-skill-name">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+            ${skillName}
+          </span>
+          <button class="popover-close-btn" aria-label="Close popover">&times;</button>
+        </div>
+        <span class="popover-label">${labelText}</span>
+        <div class="popover-project-list">
+          ${itemsHtml}
+        </div>
+      `;
+
+      document.body.appendChild(popover);
+      activePopover = popover;
+
+      // Position popover relative to the clicked tag
+      const rect = tag.getBoundingClientRect();
+      const popWidth = Math.min(360, window.innerWidth - 30);
+      let left = rect.left + window.scrollX;
+      let top = rect.bottom + window.scrollY + 8;
+
+      // Keep within viewport horizontally
+      if (left + popWidth > window.innerWidth - 15) {
+        left = window.innerWidth - popWidth - 15;
+      }
+      if (left < 15) left = 15;
+
+      popover.style.width = `${popWidth}px`;
+      popover.style.left = `${left}px`;
+      popover.style.top = `${top}px`;
+
+      // Close button inside popover
+      const closeBtn = popover.querySelector('.popover-close-btn');
+      if (closeBtn) {
+        closeBtn.addEventListener('click', (ev) => {
+          ev.stopPropagation();
+          closeActivePopover();
+        });
+      }
+
+      // Go to project button handlers
+      popover.querySelectorAll('.btn-go-to-project').forEach((btn) => {
+        btn.addEventListener('click', (ev) => {
+          ev.stopPropagation();
+          const targetId = btn.getAttribute('data-target-elem');
+          const targetTitle = btn.getAttribute('data-title');
+          closeActivePopover();
+
+          if (!targetId) return;
+
+          // If navigating to a project, reset project filters so the card is visible
+          if (targetId.startsWith('project-')) {
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const allBtn = document.querySelector('.filter-btn[data-filter="all"]');
+            if (allBtn) {
+              filterBtns.forEach(b => b.classList.remove('active'));
+              allBtn.classList.add('active');
+              document.querySelectorAll('.project-card').forEach(c => {
+                c.style.display = 'flex';
+                c.classList.remove('fade-out');
+              });
+            }
+          }
+
+          const targetElem = document.getElementById(targetId);
+          if (targetElem) {
+            targetElem.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            
+            // Remove previous pulse if any
+            targetElem.classList.remove('card-highlight-pulse');
+            // Trigger reflow to restart animation
+            void targetElem.offsetWidth;
+            targetElem.classList.add('card-highlight-pulse');
+
+            setTimeout(() => {
+              targetElem.classList.remove('card-highlight-pulse');
+            }, 3000);
+
+            showToast(isTr ? `🎯 ${targetTitle} bölümüne gidildi` : `🎯 Navigated to ${targetTitle}`);
+          }
+        });
+      });
+    });
+  });
+})();
+
+// ==========================================================================
+// 9. CV MODAL ENGINE
 // ==========================================================================
 (function initCVModal() {
   const cvModal = document.getElementById('cv-modal');
   const openCVBtn = document.getElementById('btn-open-cv-modal');
   const closeCVBtn = document.getElementById('cv-modal-close-btn');
-  const printCVBtn = document.getElementById('btn-print-cv');
 
   if (openCVBtn && cvModal) {
     openCVBtn.addEventListener('click', () => {
@@ -619,9 +809,12 @@ window.addEventListener('click', (e) => {
     });
   }
 
-  if (printCVBtn) {
-    printCVBtn.addEventListener('click', () => {
-      window.print();
+  if (cvModal) {
+    cvModal.addEventListener('click', (e) => {
+      if (e.target === cvModal || e.target.classList.contains('modal-backdrop')) {
+        cvModal.classList.remove('active');
+        cvModal.setAttribute('aria-hidden', 'true');
+      }
     });
   }
 })();
