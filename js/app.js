@@ -21,6 +21,15 @@ const translations = {
     heroGreeting: "Hi, I'm",
     heroAction: "Engineering",
     heroLead: "Senior Computer Engineering student at Yeditepe University graduating next semester, having recently completed an exchange program at UTBM in France. Focused on Software & Data Technologies, I bridge low-level systems engineering (P2P multithreaded networking, Linux iptables, socket communication) with modern intelligent data processing (Neo4j Graph Data Science, Apache Spark pipelines) and robust enterprise web solutions (.NET Core & Blazor).",
+    heroBtnProjects: "Explore Projects",
+    heroBtnCv: "View CV (PDF)",
+    heroBtnContact: "Connect",
+    focus1Title: "Distributed & P2P",
+    focus1Desc: "Multithreaded sockets & network protocols",
+    focus2Title: "Graph & Big Data",
+    focus2Desc: "Neo4j Data Science & Apache Spark",
+    focus3Title: ".NET & Modern Web",
+    focus3Desc: "C# Blazor Web & Smart Contracts",
     quickNav: "Quick Navigation",
     exploreBtn: "EXPLORE",
 
@@ -118,6 +127,15 @@ const translations = {
     heroGreeting: "Merhaba, Ben",
     heroAction: "Geliştirdiğim Alan:",
     heroLead: "Yeditepe Üniversitesi Bilgisayar Mühendisliği son sınıf öğrencisiyim ve bir dönem sonra mezun olacağım. Bir önceki dönem Fransa'da UTBM bünyesinde değişim eğitimimi tamamladım. Yazılım ve Veri Teknolojileri alanında uzmanlaşarak, alt seviye sistem mühendisliğini (P2P çok iş parçacıklı ağlar, Linux iptables, soket programlama), modern akıllı veri işleme (Neo4j Graph Data Science, Apache Spark veri hatları) ve kurumsal web çözümleri (.NET Core & Blazor) ile birleştiriyorum.",
+    heroBtnProjects: "Projelerimi İncele",
+    heroBtnCv: "CV İncele (PDF)",
+    heroBtnContact: "İletişime Geç",
+    focus1Title: "Dağıtık Sistemler & P2P",
+    focus1Desc: "Çok iş parçacıklı soketler & ağ mimarisi",
+    focus2Title: "Graf Analitiği & Büyük Veri",
+    focus2Desc: "Neo4j Graph Data Science & Apache Spark",
+    focus3Title: "Kurumsal Yazılım & Web",
+    focus3Desc: "C# .NET Core, Blazor Web & Web3",
     quickNav: "Hızlı Gezinme",
     exploreBtn: "KEŞFET",
 
@@ -793,14 +811,18 @@ window.openProjectModal = function (projectId) {
 (function initCVModal() {
   const cvModal = document.getElementById('cv-modal');
   const openCVBtn = document.getElementById('btn-open-cv-modal');
+  const heroCvBtn = document.getElementById('hero-cv-btn');
   const closeCVBtn = document.getElementById('cv-modal-close-btn');
 
-  if (openCVBtn && cvModal) {
-    openCVBtn.addEventListener('click', () => {
+  function openModal() {
+    if (cvModal) {
       cvModal.classList.add('active');
       cvModal.setAttribute('aria-hidden', 'false');
-    });
+    }
   }
+
+  if (openCVBtn) openCVBtn.addEventListener('click', openModal);
+  if (heroCvBtn) heroCvBtn.addEventListener('click', openModal);
 
   if (closeCVBtn && cvModal) {
     closeCVBtn.addEventListener('click', () => {
@@ -881,17 +903,17 @@ if (contactForm) {
 })();
 
 // ==========================================================================
-// 12. SCROLL TO TOP BUTTON (VISIBLE FROM ABOUT SECTION ONWARD)
+// 12. SCROLL TO TOP BUTTON (VISIBLE FROM PROJECTS SECTION ONWARD)
 // ==========================================================================
 (function initScrollToTop() {
   const scrollTopBtn = document.getElementById('scroll-to-top');
-  const aboutSection = document.getElementById('about');
+  const projectsSection = document.getElementById('projects');
   if (!scrollTopBtn) return;
 
   function handleScroll() {
-    if (aboutSection) {
-      const rect = aboutSection.getBoundingClientRect();
-      // Show when the top of the About section reaches within 140px of the viewport top or has passed it
+    if (projectsSection) {
+      const rect = projectsSection.getBoundingClientRect();
+      // Show when the top of the Projects section reaches within 140px of the viewport top or has passed it
       if (rect.top <= 140) {
         scrollTopBtn.classList.add('visible');
       } else {

@@ -5,36 +5,58 @@
 /* Tablets & Small Laptops (max-width: 1024px) */
 @media (max-width: 1024px) {
   .hero-container {
-    grid-template-columns: 1fr;
-    gap: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 22px;
     text-align: center;
   }
 
+  .hero-content,
   .hero-visual {
-    order: -1;
+    display: contents;
+  }
+
+  .photo-frame-wrapper {
+    order: 1;
+    justify-content: center;
+  }
+
+  .badge-status {
+    order: 2;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-title {
+    order: 3;
+    text-align: center;
+  }
+
+  .hero-lead {
+    order: 4;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+
+  .hero-cta-group {
+    order: 5;
+    justify-content: center;
+  }
+
+  .interactive-card {
+    order: 6;
     width: 100%;
     max-width: 480px;
     margin: 0 auto;
   }
 
-  .photo-frame-wrapper {
-    justify-content: center;
-  }
-
-  .badge-status {
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .hero-lead {
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-
-
-  .about-grid {
-    grid-template-columns: 1fr;
+  .hero-focus-grid {
+    order: 7;
+    width: 100%;
+    max-width: 600px;
+    margin: 10px auto 0;
   }
 
   .skills-category-grid {
@@ -59,14 +81,106 @@
 /* Mobile Devices (max-width: 768px) */
 @media (max-width: 768px) {
   :root {
-    --header-height: 68px;
+    --header-height: 102px;
   }
 
-  .hero-title,
-  html[lang="tr"] .hero-title,
-  html[lang="en"] .hero-title {
-    font-size: 2.15rem;
-    min-height: auto;
+  /* Two-tier Navbar for Mobile: Row 1 = Brand + Actions, Row 2 = Swipeable Chips */
+  .site-header {
+    height: auto;
+    padding: 8px 0 10px;
+    background: rgba(6, 15, 12, 0.94);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  }
+
+  [data-theme="light"] .site-header {
+    background: rgba(248, 250, 252, 0.94);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  }
+
+  .nav-container {
+    flex-wrap: wrap;
+    padding: 0 16px;
+    gap: 6px 0;
+    justify-content: space-between;
+  }
+
+  .brand-logo {
+    order: 1;
+    font-size: 1.15rem;
+  }
+
+  .nav-actions {
+    order: 2;
+    gap: 8px;
+  }
+
+  .btn-control {
+    padding: 5px 10px;
+    font-size: 0.75rem;
+    border-radius: 8px;
+  }
+
+  .nav-chips-container {
+    order: 3;
+    width: 100%;
+    margin: 6px 0 0 0;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 2px;
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .nav-chips-container::-webkit-scrollbar {
+    display: none;
+  }
+
+  .navbar-chips {
+    gap: 6px;
+    width: max-content;
+  }
+
+  .nav-chip-btn {
+    padding: 6px 12px;
+    font-size: 0.76rem;
+    border-radius: 10px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  /* Hero Section Responsive Layout & Exact Sequence:
+     1. Photo & social links
+     2. Yeditepe & UTBM badge
+     3. Merhaba greeting & title
+     4. Yeditepe lead paragraph
+     5. Action CTA buttons
+     6. JSON code card
+  */
+  .hero-section {
+    padding-top: calc(var(--header-height) + 16px);
+    padding-bottom: 40px;
+  }
+
+  .hero-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    text-align: center;
+  }
+
+  .hero-content,
+  .hero-visual {
+    display: contents;
+  }
+
+  .photo-frame-wrapper {
+    order: 1;
+    margin-bottom: 4px;
+    justify-content: center;
   }
 
   .profile-photo-frame {
@@ -75,20 +189,61 @@
     border-radius: 36px;
   }
 
-  .nav-chips-container {
-    margin: 0 8px;
-    justify-content: flex-start;
-    -webkit-overflow-scrolling: touch;
+  .hero-social-icons {
+    gap: 10px;
   }
 
-  .navbar-chips {
-    gap: 6px;
+  .hero-social-link {
+    width: 40px;
+    height: 40px;
   }
 
-  .nav-chip-btn {
-    padding: 6px 11px;
-    font-size: 0.76rem;
-    border-radius: 10px;
+  .badge-status {
+    order: 2;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 4px;
+  }
+
+  .hero-title,
+  html[lang="tr"] .hero-title,
+  html[lang="en"] .hero-title {
+    order: 3;
+    font-size: 1.95rem;
+    min-height: auto;
+    margin-bottom: 8px;
+    text-align: center;
+    line-height: 1.22;
+  }
+
+  .hero-lead {
+    order: 4;
+    font-size: 0.95rem;
+    line-height: 1.65;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 12px;
+    text-align: center;
+  }
+
+  .hero-cta-group {
+    order: 5;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 4px;
+    margin-bottom: 16px;
+  }
+
+  .interactive-card {
+    order: 6;
+    width: 100%;
+    max-width: 440px;
+    padding: 16px;
+  }
+
+  /* Keep mobile hero uncluttered and fast by hiding focus grid on small screens */
+  .hero-focus-grid {
+    display: none;
   }
 
   .skills-category-grid {
@@ -135,9 +290,34 @@
 
 /* Extra Small Phones (max-width: 480px) */
 @media (max-width: 480px) {
-  .nav-chip-btn {
-    width: auto;
-    flex-shrink: 0;
+  .hero-title,
+  html[lang="tr"] .hero-title,
+  html[lang="en"] .hero-title {
+    font-size: 1.68rem;
+  }
+
+  .hero-lead {
+    font-size: 0.9rem;
+  }
+
+  .btn {
+    padding: 10px 18px;
+    font-size: 0.85rem;
+  }
+
+  .hero-cta-group {
+    flex-direction: column;
+    width: 100%;
+    gap: 8px;
+  }
+
+  .hero-cta-group .btn {
+    width: 100%;
+  }
+
+  .code-block {
+    font-size: 0.76rem;
+    line-height: 1.45;
   }
 
   .projects-filter-bar {
@@ -156,4 +336,3 @@
     height: 44px;
   }
 }
-

@@ -615,14 +615,92 @@ html[lang="en"] .hero-title {
   transform: translateY(-2px);
 }
 
+.btn-ghost {
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1px solid var(--border-glass);
+}
+
+.btn-ghost:hover {
+  background: rgba(16, 185, 129, 0.08);
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+  transform: translateY(-2px);
+}
+
 .btn-block { width: 100%; }
 .btn-sm { padding: 8px 16px; font-size: 0.85rem; }
+
+/* Hero Focus Highlights Grid */
+.hero-focus-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.hero-focus-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-glass);
+  transition: all var(--trans-fast);
+}
+
+.hero-focus-card:hover {
+  border-color: var(--accent-primary);
+  background: rgba(16, 185, 129, 0.08);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(16, 185, 129, 0.15);
+}
+
+.focus-card-icon {
+  font-size: 1.25rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.focus-card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.focus-card-title {
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+.focus-card-desc {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  line-height: 1.25;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Hero CTA Action Group */
+.hero-cta-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
 
 /* Interactive JSON Card in Hero */
 .interactive-card {
   width: 100%;
   max-width: 480px;
-  padding: 22px;
+  padding: 18px 20px;
   position: relative;
   background: var(--bg-card);
   border: 1px solid rgba(16, 185, 129, 0.28);
@@ -635,8 +713,8 @@ html[lang="en"] .hero-title {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-bottom: 14px;
-  margin-bottom: 16px;
+  padding-bottom: 10px;
+  margin-bottom: 12px;
   border-bottom: 1px solid var(--border-glass);
 }
 
@@ -663,8 +741,8 @@ html[lang="en"] .hero-title {
 
 .code-block {
   font-family: var(--font-code);
-  font-size: 0.85rem;
-  line-height: 1.6;
+  font-size: 0.82rem;
+  line-height: 1.48;
   color: var(--text-secondary);
   overflow-x: auto;
 }
@@ -688,19 +766,19 @@ html[lang="en"] .hero-title {
 .card-footer-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 20px;
-  padding-top: 14px;
+  gap: 7px;
+  margin-top: 14px;
+  padding-top: 12px;
   border-top: 1px solid var(--border-glass);
 }
 
 .tech-pill {
   font-family: var(--font-code);
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   background: rgba(16, 185, 129, 0.08);
   border: 1px solid rgba(16, 185, 129, 0.22);
   color: var(--accent-primary);
-  padding: 4px 10px;
+  padding: 3px 9px;
   border-radius: 20px;
 }
 

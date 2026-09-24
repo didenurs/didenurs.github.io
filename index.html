@@ -63,7 +63,6 @@
             <span data-i18n="navProjects">Projects</span>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
-          <a href="#about" class="nav-chip-btn" data-i18n="navAbout">Background</a>
           <a href="#skills" class="nav-chip-btn" data-i18n="navSkills">Capabilities</a>
           <a href="#experience" class="nav-chip-btn" data-i18n="navExp">Education & Experience</a>
           <a href="#certificates" class="nav-chip-btn" data-i18n="navCerts">Certifications</a>
@@ -109,6 +108,47 @@
             Focused on <strong>Software & Data Technologies</strong>, I bridge low-level systems engineering (P2P multithreaded networking, Linux iptables, socket communication) 
             with modern intelligent data processing (Neo4j Graph Data Science, Apache Spark pipelines) and robust enterprise web solutions (.NET Core & Blazor).
           </p>
+
+          <!-- Core Focus Highlights -->
+          <div class="hero-focus-grid">
+            <div class="hero-focus-card glass-panel">
+              <span class="focus-card-icon">⚡</span>
+              <div class="focus-card-info">
+                <strong class="focus-card-title" data-i18n="focus1Title">Distributed & P2P</strong>
+                <span class="focus-card-desc" data-i18n="focus1Desc">Multithreaded sockets & network protocols</span>
+              </div>
+            </div>
+            <div class="hero-focus-card glass-panel">
+              <span class="focus-card-icon">🕸️</span>
+              <div class="focus-card-info">
+                <strong class="focus-card-title" data-i18n="focus2Title">Graph & Big Data</strong>
+                <span class="focus-card-desc" data-i18n="focus2Desc">Neo4j Data Science & Apache Spark</span>
+              </div>
+            </div>
+            <div class="hero-focus-card glass-panel">
+              <span class="focus-card-icon">🚀</span>
+              <div class="focus-card-info">
+                <strong class="focus-card-title" data-i18n="focus3Title">.NET & Modern Web</strong>
+                <span class="focus-card-desc" data-i18n="focus3Desc">C# Blazor Web & Smart Contracts</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hero Action Buttons -->
+          <div class="hero-cta-group">
+            <a href="#projects" class="btn btn-primary" id="hero-btn-projects">
+              <span data-i18n="heroBtnProjects">Explore Projects</span>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <button id="hero-cv-btn" class="btn btn-outline" type="button" title="View Verified CV PDF">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+              <span data-i18n="heroBtnCv">View CV (PDF)</span>
+            </button>
+            <a href="#contact" class="btn btn-ghost" id="hero-btn-contact">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+              <span data-i18n="heroBtnContact">Connect</span>
+            </a>
+          </div>
         </div>
 
         <!-- Right Column: Photo Frame + Social Icons (At top) & Profile JSON Card (Below it) -->
@@ -174,93 +214,6 @@
           </div>
         </div>
 
-      </div>
-    </section>
-
-    <!-- ABOUT SECTION -->
-    <section id="about" class="section">
-      <div class="container">
-        <div class="section-header">
-          <div class="section-subtitle">
-            <span class="code-tag">&lt;section id="about"&gt;</span>
-          </div>
-          <h2 class="section-title" data-i18n="aboutTitle">Engineering Background & Core Focus</h2>
-          <div class="section-divider"></div>
-        </div>
-
-        <div class="about-grid">
-          <div class="about-narrative glass-panel">
-            <h3 class="about-heading" data-i18n="aboutHeadline">Transforming Complex Challenges into Scalable Software Solutions</h3>
-            <p data-i18n="aboutP1">
-              I am a senior <strong>Computer Science Engineering</strong> student at <strong>Yeditepe University</strong>, 
-              graduating in one semester and having recently completed an academic exchange program at <strong>Université de Technologie de Belfort-Montbéliard (UTBM) in France</strong>. 
-              My technical journey bridges low-level systems engineering with intelligent data analytics and modern enterprise software.
-            </p>
-            <p data-i18n="aboutP2">
-              Whether it's building a <strong>P2P multi-source video streaming protocol</strong> from scratch in Java, 
-              orchestrating distributed data pipelines using <strong>Apache Spark</strong>, 
-              querying complex topological knowledge models with <strong>Neo4j & SPARQL</strong>, 
-              or developing reactive web applications with <strong>C# .NET and Blazor</strong>, 
-              I thrive on engineering scalable, robust systems.
-            </p>
-            <p data-i18n="aboutP3">
-              Beyond technical depth, I have experience working within cross-cultural teams (such as developing 
-              accessibility solutions during the international <em>Innovation Crunch Time</em> in France) and delivering 
-              collaborative features under real-world development workflows.
-            </p>
-
-            <div class="about-key-points">
-              <div class="key-point-item">
-                <span class="point-icon">⚡</span>
-                <div>
-                  <strong data-i18n="keyPoint1Title">Distributed & High-Concurrency</strong>
-                  <p data-i18n="keyPoint1Desc">Multithreaded socket architectures, P2P network discovery, and Linux firewall management.</p>
-                </div>
-              </div>
-              <div class="key-point-item">
-                <span class="point-icon">🕸️</span>
-                <div>
-                  <strong data-i18n="keyPoint2Title">Graph Analytics & Semantic Web</strong>
-                  <p data-i18n="keyPoint2Desc">Neo4j Graph Data Science, RDF/OWL ontologies, SWRL reasoning, and community detection.</p>
-                </div>
-              </div>
-              <div class="key-point-item">
-                <span class="point-icon">🚀</span>
-                <div>
-                  <strong data-i18n="keyPoint3Title">Enterprise & Web Systems</strong>
-                  <p data-i18n="keyPoint3Desc">Blazor/Razor components, SQLite/SQL database architectures, REST API integration, and testing.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Feature Cards -->
-          <div class="about-cards-col">
-            <div class="specialization-card glass-panel tilt-element">
-              <div class="spec-icon-box">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
-              </div>
-              <h4 data-i18n="spec1Title">Graph & Knowledge Representation</h4>
-              <p data-i18n="spec1Desc">Topological graph algorithms (centrality, shortest paths) in Neo4j, coupled with W3C Semantic Web standards (RDF/OWL, SPARQL).</p>
-            </div>
-
-            <div class="specialization-card glass-panel tilt-element">
-              <div class="spec-icon-box">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
-              </div>
-              <h4 data-i18n="spec2Title">Distributed Computing & Big Data</h4>
-              <p data-i18n="spec2Desc">Scalable data processing with Apache Spark RDDs and DataFrames, PCA dimensionality reduction, and IQR outlier detection.</p>
-            </div>
-
-            <div class="specialization-card glass-panel tilt-element">
-              <div class="spec-icon-box">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
-              </div>
-              <h4 data-i18n="spec3Title">Blockchain & Smart Contracts</h4>
-              <p data-i18n="spec3Desc">Private multi-node blockchain setups (Geth, MultiChain), Solidity smart contracts, Web3.js integration, and automated testing.</p>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
 
