@@ -953,6 +953,9 @@ applyTheme(currentTheme);
   const quickCopyBtn = document.getElementById('btn-quick-copy');
 
   const myEmail = 'didenurszn@gmail.com';
+  // Web3Forms: Easiest & most reliable service (250 free emails/month forever).
+  // You can paste your free key from https://web3forms.com below. If empty, the system automatically uses FormSubmit.
+  const WEB3FORMS_ACCESS_KEY = '';
 
   function getFormValues() {
     const nameEl = document.getElementById('form-name');
@@ -967,7 +970,7 @@ applyTheme(currentTheme);
     };
   }
 
-  // A. Direct Form Submission (Background AJAX via FormSubmit - zero app friction)
+  // A. Direct Form Submission (Web3Forms Primary -> FormSubmit Resilient Fallback -> Gmail Web)
   if (contactForm) {
     contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -986,22 +989,60 @@ applyTheme(currentTheme);
       }
 
       try {
-        const response = await fetch(`https://formsubmit.co/ajax/${myEmail}`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-          },
-          body: JSON.stringify({
-            name: vals.name,
-            email: vals.email,
-            _subject: `[Portfolio] ${vals.subject} - ${vals.name}`,
-            message: vals.message,
-            _template: 'table'
-          })
-        });
+        let sentSuccessfully = false;
 
-        if (response.ok) {
+        // 1. Primary Engine: Web3Forms (if access key configured)
+        if (WEB3FORMS_ACCESS_KEY && WEB3FORMS_ACCESS_KEY.trim() !== '') {
+          try {
+            const w3fResponse = await fetch('https://api.web3forms.com/submit', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+              },
+              body: JSON.stringify({
+                access_key: WEB3FORMS_ACCESS_KEY.trim(),
+                name: vals.name,
+                email: vals.email,
+                from_name: `${vals.name} (Portfolio)`,
+                subject: `[Portfolio] ${vals.subject} - ${vals.name}`,
+                message: vals.message
+              })
+            });
+            if (w3fResponse.ok) {
+              const resJson = await w3fResponse.json();
+              if (resJson.success) {
+                sentSuccessfully = true;
+              }
+            }
+          } catch (w3fErr) {
+            console.warn('Web3Forms submission failed, using resilient fallback', w3fErr);
+          }
+        }
+
+        // 2. Resilient Fallback: FormSubmit (Zero setup required)
+        if (!sentSuccessfully) {
+          const response = await fetch(`https://formsubmit.co/ajax/${myEmail}`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+              name: vals.name,
+              email: vals.email,
+              _subject: `[Portfolio] ${vals.subject} - ${vals.name}`,
+              message: vals.message,
+              _template: 'table'
+            })
+          });
+
+          if (response.ok) {
+            sentSuccessfully = true;
+          }
+        }
+
+        if (sentSuccessfully) {
           // Success: Show animated in-card success banner and hide inputs
           if (successBanner) {
             successBanner.style.display = 'flex';
