@@ -953,9 +953,8 @@ applyTheme(currentTheme);
   const quickCopyBtn = document.getElementById('btn-quick-copy');
 
   const myEmail = 'didenurszn@gmail.com';
-  // Web3Forms: Easiest & most reliable service (250 free emails/month forever).
-  // You can paste your free key from https://web3forms.com below. If empty, the system automatically uses FormSubmit.
-  const WEB3FORMS_ACCESS_KEY = '';
+  // Web3Forms: Official access key for didenurszn@gmail.com
+  const WEB3FORMS_ACCESS_KEY = 'cd219722-986b-4fc1-8e0c-543d662f4eee';
 
   function getFormValues() {
     const nameEl = document.getElementById('form-name');
