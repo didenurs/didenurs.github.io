@@ -41,7 +41,9 @@
 
   <!-- Notification Toast -->
   <div id="toast" class="toast" role="alert" aria-live="polite">
-    <span class="toast-icon">✓</span>
+    <span class="toast-icon" aria-hidden="true">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+    </span>
     <span id="toast-message" class="toast-msg">Notification</span>
   </div>
 
@@ -78,7 +80,10 @@
 
         <!-- Theme Toggle (Dark / Light) -->
         <button id="theme-toggle" class="btn-control" title="Açık / Koyu Tema (Toggle Theme)" aria-label="Toggle Theme">
-          <span id="theme-icon">☀️</span>
+          <span id="theme-icon" class="theme-icon-wrap" aria-hidden="true">
+            <svg class="theme-svg theme-svg-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+            <svg class="theme-svg theme-svg-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+          </span>
         </button>
       </div>
     </div>
@@ -529,7 +534,10 @@
                 </div>
                 <span class="timeline-date">February 2026 – July 2026</span>
               </div>
-              <p class="timeline-location">📍 Belfort-Montbéliard, France</p>
+              <p class="timeline-location">
+                <svg class="timeline-meta-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                <span>Belfort-Montbéliard, France</span>
+              </p>
               <div class="timeline-coursework">
                 <strong data-i18n="courseworkLabel">Relevant Coursework:</strong>
                 <div class="coursework-chips">
@@ -555,7 +563,10 @@
                 </div>
                 <span class="timeline-date">2022 – Present</span>
               </div>
-              <p class="timeline-location">📍 Istanbul, Turkey</p>
+              <p class="timeline-location">
+                <svg class="timeline-meta-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                <span>Istanbul, Turkey</span>
+              </p>
               <p class="timeline-text" data-i18n="yeditepeDesc">
                 Undergraduate studies focused on data structures, algorithms, object-oriented design, 
                 systems programming, network protocols, database engineering, and artificial intelligence foundations.
@@ -574,7 +585,10 @@
                 </div>
                 <span class="timeline-date">July 2025</span>
               </div>
-              <p class="timeline-location">📍 C# / .NET / Blazor / API Integration / SQLite / Postman</p>
+              <p class="timeline-location">
+                <svg class="timeline-meta-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                <span>C# / .NET / Blazor / API Integration / SQLite / Postman</span>
+              </p>
               <ul class="timeline-list">
                 <li data-i18n="cloudpeer1">Contributed to the development of a modern <strong>Blazor-based web application</strong> integrated with existing Mock API systems.</li>
                 <li data-i18n="cloudpeer2">Developed interactive frontend features for data visualization, user authentication, and multi-tier filtering using <strong>C# and Razor Components</strong>.</li>
@@ -595,7 +609,10 @@
                 </div>
                 <span class="timeline-date" data-i18n="volunteerDate">International Team Project</span>
               </div>
-              <p class="timeline-location">📍 Cross-Cultural Team (10 Participants, 6 Countries) • France</p>
+              <p class="timeline-location">
+                <svg class="timeline-meta-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                <span>Cross-Cultural Team (10 Participants, 6 Countries) • France</span>
+              </p>
               <p class="timeline-text" data-i18n="volunteerDesc">
                 Collaborated within a multidisciplinary team during the intensive one-week Innovation Crunch Time event to engineer an <strong>accessibility-focused rain protection system for wheelchair users</strong>, aimed at improving mobility and daily comfort.
                 Contributed to ideation, technical evaluation, CAD design, and creation of a functional physical prototype presented to an ADAPEI supervisor.
@@ -629,7 +646,7 @@
               <h3 class="cert-title">Accelerating End-to-End Data Science Workflows</h3>
               <span class="cert-year">2026</span>
               <p class="cert-desc" data-i18n="certNvidia">Hands-on mastery of GPU-accelerated data processing, rapid ETL pipelines, and high-performance analytics pipelines.</p>
-              <span class="cert-link-btn" data-i18n="viewCert">View Certificate ↗</span>
+              <span class="cert-link-btn"><span data-i18n="viewCert">View Certificate</span> <svg class="inline-arrow-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></span>
             </div>
           </a>
 
@@ -643,7 +660,7 @@
               <h3 class="cert-title">Tech & Dev Talks Seminar</h3>
               <span class="cert-year">2024</span>
               <p class="cert-desc" data-i18n="certCoder">Attendance certificate covering cutting-edge software architecture trends, developer practices, and cloud patterns.</p>
-              <span class="cert-link-btn" data-i18n="viewCert">View Certificate ↗</span>
+              <span class="cert-link-btn"><span data-i18n="viewCert">View Certificate</span> <svg class="inline-arrow-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></span>
             </div>
           </a>
 
@@ -657,7 +674,7 @@
               <h3 class="cert-title">Summer School Academy</h3>
               <span class="cert-year">2019</span>
               <p class="cert-desc" data-i18n="certSabanci">Dual completion in Introduction to Computer Programming and 3D Organ Design Course.</p>
-              <span class="cert-link-btn" data-i18n="viewCert">View Certificate ↗</span>
+              <span class="cert-link-btn"><span data-i18n="viewCert">View Certificate</span> <svg class="inline-arrow-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></span>
             </div>
           </a>
         </div>
@@ -743,11 +760,11 @@
             <form id="contact-form" class="contact-form">
               <div class="form-group">
                 <label for="form-name" data-i18n="formLabelName">Your Name</label>
-                <input type="text" id="form-name" placeholder="Jane Doe" required>
+                <input type="text" id="form-name" placeholder="Jane Doe" required autocomplete="name">
               </div>
               <div class="form-group">
                 <label for="form-email" data-i18n="formLabelEmail">Your Email</label>
-                <input type="email" id="form-email" placeholder="jane.doe@example.com" required>
+                <input type="email" id="form-email" placeholder="jane.doe@example.com" required autocomplete="email">
               </div>
               <div class="form-group">
                 <label for="form-subject" data-i18n="formLabelSubject">Subject</label>
@@ -757,10 +774,39 @@
                 <label for="form-message" data-i18n="formLabelMsg">Message</label>
                 <textarea id="form-message" rows="4" placeholder="Hello Didenur, I saw your portfolio and would like to talk about..." required></textarea>
               </div>
-              <button type="submit" class="btn btn-primary btn-block">
-                <span data-i18n="formSubmit">Compose & Send Message</span>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+              
+              <!-- Primary Direct Submission Button -->
+              <button type="submit" class="btn btn-primary btn-block" id="btn-submit-form">
+                <span id="submit-btn-text" data-i18n="formSubmit">Send Message</span>
+                <svg id="submit-btn-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
               </button>
+
+              <!-- In-Card Success Banner (Clean animated state) -->
+              <div id="form-success-banner" class="form-status-banner success-banner" style="display: none;">
+                <div class="status-banner-icon">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                </div>
+                <div class="status-banner-content">
+                  <h4 data-i18n="formSuccessTitle">Mesajınız Başarıyla İletildi!</h4>
+                  <p data-i18n="formSuccessDesc">İletişime geçtiğiniz için teşekkür ederim. En kısa sürede e-posta adresinize dönüş yapacağım.</p>
+                  <button type="button" class="btn-send-another" id="btn-send-another" data-i18n="formSendAnother">Yeni Mesaj Gönder</button>
+                </div>
+              </div>
+
+              <!-- Quick Communication Alternatives (Solves Outlook/Mailto issues completely) -->
+              <div class="contact-quick-options">
+                <span class="quick-options-label" data-i18n="formQuickLabel">Veya doğrudan açın:</span>
+                <div class="quick-btns-row">
+                  <button type="button" class="btn-quick-action" id="btn-quick-gmail" title="Open in Gmail Web Browser">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                    <span data-i18n="formOpenGmail">Gmail Web</span>
+                  </button>
+                  <button type="button" class="btn-quick-action" id="btn-quick-copy" title="Copy Email Address to Clipboard">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                    <span data-i18n="formCopyEmail">E-postayı Kopyala</span>
+                  </button>
+                </div>
+              </div>
             </form>
           </div>
         </div>

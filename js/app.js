@@ -94,7 +94,7 @@ const translations = {
     certNvidia: "Hands-on mastery of GPU-accelerated data processing, rapid ETL pipelines, and high-performance analytics pipelines.",
     certCoder: "Attendance certificate covering cutting-edge software architecture trends, developer practices, and cloud patterns.",
     certSabanci: "Dual completion in Introduction to Computer Programming and 3D Organ Design Course.",
-    viewCert: "View Certificate ↗",
+    viewCert: "View Certificate",
 
     contactTitle: "Let's Connect & Collaborate",
     contactSubtitle: "I am always open to discussing distributed software architectures, data science challenges, internship/full-time opportunities, or innovative engineering collaborations.",
@@ -110,7 +110,15 @@ const translations = {
     formLabelEmail: "Your Email",
     formLabelSubject: "Subject",
     formLabelMsg: "Message",
-    formSubmit: "Compose & Send Message",
+    formSubmit: "Send Message",
+    formSubmitting: "Sending...",
+    formSuccessTitle: "Message Delivered Successfully!",
+    formSuccessDesc: "Thank you for reaching out. I will get back to you as soon as possible.",
+    formSendAnother: "Send Another Message",
+    formQuickLabel: "Or open directly with:",
+    formOpenGmail: "Gmail Web",
+    formCopyEmail: "Copy Email",
+    toastEmailCopied: "Email address copied to clipboard!",
     footerStatus: "Open for Opportunities & Innovation"
   },
 
@@ -200,7 +208,7 @@ const translations = {
     certNvidia: "GPU hızlandırmalı veri işleme, hızlı ETL veri hatları ve yüksek performanslı veri analitiği eğitimi.",
     certCoder: "Modern yazılım mimarisi trendleri, geliştirici pratikleri ve bulut desenleri katılım sertifikası.",
     certSabanci: "Bilgisayar Programlamaya Giriş ve 3 Boyutlu Organ Tasarımı Çift Ders Tamamlama Sertifikası.",
-    viewCert: "Sertifikayı Görüntüle ↗",
+    viewCert: "Sertifikayı Görüntüle",
 
     contactTitle: "İletişime Geçin & İş Birliği",
     contactSubtitle: "Dağıtık yazılım mimarileri, veri bilimi projeleri, staj/iş fırsatları veya yenilikçi mühendislik iş birlikleri hakkında görüşmeye her zaman açığım.",
@@ -216,7 +224,15 @@ const translations = {
     formLabelEmail: "E-posta Adresiniz",
     formLabelSubject: "Konu",
     formLabelMsg: "Mesajınız",
-    formSubmit: "Mesajı Hazırla ve Gönder",
+    formSubmit: "Mesajı Gönder",
+    formSubmitting: "Gönderiliyor...",
+    formSuccessTitle: "Mesajınız Başarıyla İletildi!",
+    formSuccessDesc: "İletişime geçtiğiniz için teşekkür ederim. En kısa sürede e-posta adresinize dönüş yapacağım.",
+    formSendAnother: "Yeni Mesaj Gönder",
+    formQuickLabel: "Veya doğrudan açın:",
+    formOpenGmail: "Gmail Web",
+    formCopyEmail: "E-postayı Kopyala",
+    toastEmailCopied: "E-posta adresi panoya kopyalandı!",
     footerStatus: "Fırsatlara ve İnovasyona Açık"
   }
 };
@@ -254,9 +270,11 @@ function applyTheme(theme) {
   localStorage.setItem('portfolio_theme', theme);
   document.documentElement.setAttribute('data-theme', theme);
 
-  const themeIcon = document.getElementById('theme-icon');
-  if (themeIcon) {
-    themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
+  const themeToggle = document.getElementById('theme-toggle');
+  if (themeToggle) {
+    const isDark = theme === 'dark';
+    themeToggle.setAttribute('aria-label', isDark ? 'Switch to Light Theme' : 'Switch to Dark Theme');
+    themeToggle.setAttribute('title', isDark ? 'Açık Temaya Geç / Switch to Light Mode' : 'Koyu Temaya Geç / Switch to Dark Mode');
   }
 }
 
@@ -922,25 +940,130 @@ applyLanguage(currentLang);
 applyTheme(currentTheme);
 
 // ==========================================================================
-// 10. CONTACT FORM DIRECT COMPOSER
+// 10. CONTACT FORM DIRECT ENGINE & ACCESSIBLE COMMUNICATION SUITE
 // ==========================================================================
-const contactForm = document.getElementById('contact-form');
-if (contactForm) {
-  contactForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const name = document.getElementById('form-name').value;
-    const email = document.getElementById('form-email').value;
-    const subject = document.getElementById('form-subject').value;
-    const message = document.getElementById('form-message').value;
+(function initContactSuite() {
+  const contactForm = document.getElementById('contact-form');
+  const submitBtn = document.getElementById('btn-submit-form');
+  const submitBtnText = document.getElementById('submit-btn-text');
+  const submitBtnIcon = document.getElementById('submit-btn-icon');
+  const successBanner = document.getElementById('form-success-banner');
+  const sendAnotherBtn = document.getElementById('btn-send-another');
+  const quickGmailBtn = document.getElementById('btn-quick-gmail');
+  const quickCopyBtn = document.getElementById('btn-quick-copy');
 
-    const fullSubject = encodeURIComponent(`[Portfolio Contact] ${subject} - ${name}`);
-    const fullBody = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
+  const myEmail = 'didenurszn@gmail.com';
 
-    const emailToastMsg = currentLang === 'tr' ? 'E-posta istemcisi açılıyor...' : 'Opening email client...';
-    showToast(emailToastMsg);
-    window.location.href = `mailto:didenurszn@gmail.com?subject=${fullSubject}&body=${fullBody}`;
-  });
-}
+  function getFormValues() {
+    const nameEl = document.getElementById('form-name');
+    const emailEl = document.getElementById('form-email');
+    const subjectEl = document.getElementById('form-subject');
+    const msgEl = document.getElementById('form-message');
+    return {
+      name: (nameEl ? nameEl.value : '').trim(),
+      email: (emailEl ? emailEl.value : '').trim(),
+      subject: (subjectEl ? subjectEl.value : '').trim() || (currentLang === 'tr' ? 'Portfolyo İletişim' : 'Portfolio Contact'),
+      message: (msgEl ? msgEl.value : '').trim()
+    };
+  }
+
+  // A. Direct Form Submission (Background AJAX via FormSubmit - zero app friction)
+  if (contactForm) {
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const vals = getFormValues();
+
+      if (!vals.name || !vals.email || !vals.message) {
+        showToast(currentLang === 'tr' ? 'Lütfen tüm alanları doldurun.' : 'Please fill in all required fields.');
+        return;
+      }
+
+      // Enter loading state
+      if (submitBtn) submitBtn.disabled = true;
+      if (submitBtnText) submitBtnText.textContent = currentLang === 'tr' ? 'Gönderiliyor...' : 'Sending...';
+      if (submitBtnIcon) {
+        submitBtnIcon.innerHTML = `<circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" stroke-dasharray="32" stroke-linecap="round" fill="none" class="spin-animation"></circle>`;
+      }
+
+      try {
+        const response = await fetch(`https://formsubmit.co/ajax/${myEmail}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify({
+            name: vals.name,
+            email: vals.email,
+            _subject: `[Portfolio] ${vals.subject} - ${vals.name}`,
+            message: vals.message,
+            _template: 'table'
+          })
+        });
+
+        if (response.ok) {
+          // Success: Show animated in-card success banner and hide inputs
+          if (successBanner) {
+            successBanner.style.display = 'flex';
+          }
+          contactForm.querySelectorAll('.form-group, #btn-submit-form, .contact-quick-options').forEach(el => {
+            el.style.display = 'none';
+          });
+          contactForm.reset();
+          showToast(currentLang === 'tr' ? 'Mesajınız başarıyla iletildi!' : 'Message sent successfully!');
+        } else {
+          throw new Error('API server returned error');
+        }
+      } catch (err) {
+        // Fallback: If network error or block occurs, seamlessly open Gmail Web in new tab with prefilled contents
+        const fullSubject = encodeURIComponent(`[Portfolio] ${vals.subject} - ${vals.name}`);
+        const fullBody = encodeURIComponent(`Name: ${vals.name}\nEmail: ${vals.email}\n\nMessage:\n${vals.message}`);
+        const fallbackMsg = currentLang === 'tr' ? 'Doğrudan gönderilemedi. Gmail Web açılıyor...' : 'Opening Gmail Web...';
+        showToast(fallbackMsg);
+        window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=${myEmail}&su=${fullSubject}&body=${fullBody}`, '_blank');
+      } finally {
+        if (submitBtn) submitBtn.disabled = false;
+        if (submitBtnText) submitBtnText.textContent = currentLang === 'tr' ? 'Mesajı Gönder' : 'Send Message';
+        if (submitBtnIcon) {
+          submitBtnIcon.innerHTML = `<line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>`;
+        }
+      }
+    });
+  }
+
+  // B. Reset button ("Yeni Mesaj Gönder")
+  if (sendAnotherBtn && contactForm) {
+    sendAnotherBtn.addEventListener('click', () => {
+      if (successBanner) successBanner.style.display = 'none';
+      contactForm.querySelectorAll('.form-group, #btn-submit-form, .contact-quick-options').forEach(el => {
+        el.style.display = '';
+      });
+    });
+  }
+
+  // C. Quick Action 1: Open in Gmail Web directly in browser (No Outlook / No system mail setup required)
+  if (quickGmailBtn) {
+    quickGmailBtn.addEventListener('click', () => {
+      const vals = getFormValues();
+      const subject = vals.subject ? encodeURIComponent(`[Portfolio] ${vals.subject}${vals.name ? ' - ' + vals.name : ''}`) : encodeURIComponent('Portfolio Contact');
+      const body = vals.message ? encodeURIComponent(`Name: ${vals.name}\nEmail: ${vals.email}\n\nMessage:\n${vals.message}`) : '';
+      showToast(currentLang === 'tr' ? 'Gmail Web sekmesi açılıyor...' : 'Opening Gmail Web in new tab...');
+      window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=${myEmail}&su=${subject}&body=${body}`, '_blank');
+    });
+  }
+
+  // D. Quick Action 2: Copy email address to clipboard with instant notification
+  if (quickCopyBtn) {
+    quickCopyBtn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(myEmail);
+        showToast(currentLang === 'tr' ? 'didenurszn@gmail.com panoya kopyalandı!' : 'didenurszn@gmail.com copied to clipboard!');
+      } catch (err) {
+        showToast(myEmail);
+      }
+    });
+  }
+})();
 
 // ==========================================================================
 // 11. NAVBAR SCROLL & MOBILE MENU
